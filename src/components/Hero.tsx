@@ -23,7 +23,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative h-screen min-h-[600px] w-full overflow-hidden bg-white">
+    <section className="relative h-screen min-h-[600px] w-full overflow-hidden bg-brand-black">
       {/* Slideshow with Zoom Effect */}
       <AnimatePresence initial={false}>
         <motion.div
@@ -41,8 +41,8 @@ export default function Hero() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-white/40" />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/90" />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/90" />
         </motion.div>
       </AnimatePresence>
 
@@ -57,11 +57,11 @@ export default function Hero() {
           <span className="mb-6 inline-block font-sans text-[11px] font-bold tracking-[0.3em] text-brand-gold uppercase sm:text-xs drop-shadow-sm">
             Bangalore's Most Trusted Interior Studio
           </span>
-          <h1 className="mb-6 font-serif text-4xl font-normal leading-tight text-brand-black md:text-6xl lg:text-7xl">
+          <h1 className="mb-6 font-serif text-4xl font-normal leading-tight text-white md:text-6xl lg:text-7xl">
             Contemporary Luxury <br className="hidden md:block" />
-            <span className="italic text-brand-black/90">Heritage Craftsmanship</span>
+            <span className="italic text-white/90">Heritage Craftsmanship</span>
           </h1>
-          <p className="mx-auto mb-10 max-w-2xl font-sans text-sm font-light leading-relaxed text-zinc-900 sm:text-lg">
+          <p className="mx-auto mb-10 max-w-2xl font-sans text-sm font-light leading-relaxed text-zinc-300 sm:text-lg">
             Experience bespoke interior design where modern minimalism meets timeless Indian artistry. Near Manyata Tech Park, Bengaluru.
           </p>
 
@@ -77,7 +77,7 @@ export default function Hero() {
               href="https://wa.me/919886276722"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full items-center justify-center border border-brand-black/20 bg-white/40 backdrop-blur-sm px-10 py-5 font-sans text-xs font-medium uppercase tracking-widest text-brand-black transition-all hover:bg-white/60 sm:w-auto"
+              className="flex w-full items-center justify-center border border-white/20 bg-white/10 backdrop-blur-md px-10 py-5 font-sans text-xs font-medium uppercase tracking-widest text-white transition-all hover:bg-white/20 sm:w-auto"
             >
               WhatsApp Us
             </a>
@@ -92,7 +92,7 @@ export default function Hero() {
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`h-1 transition-all duration-500 ${
-              index === currentSlide ? "w-10 bg-brand-gold" : "w-2 bg-black/20"
+              index === currentSlide ? "w-10 bg-brand-gold" : "w-2 bg-white/20"
             }`}
              aria-label={`Go to slide ${index + 1}`}
           />
