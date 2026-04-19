@@ -1,0 +1,291 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const propertyTypes = ["2BHK Apartment", "3BHK Apartment", "4BHK", "Villa", "Office", "Others"];
+const budgets = ["Under ₹5 Lakhs", "₹5–10 Lakhs", "₹10–20 Lakhs", "₹20–50 Lakhs", "₹50 Lakhs+"];
+const sources = ["Instagram", "Google", "YouTube", "Friend/Family", "Other"];
+const needs = ["Full Home Interior", "Living Room", "Bedroom", "Kitchen", "Bathroom", "Office Interior"];
+
+export default function ConsultationForm() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const hasAggressivelyOpened = useRef(false);
+
+  const [formData, setFormData] = useState({
+    fullName: "",
+    phone: "",
+    email: "",
+    city: "",
+    propertyType: "",
+    budget: "",
+    selectedNeeds: [] as string[],
+    source: "",
+    message: "",
+  });
+
+  useEffect(() => {
+    // Intercept clicks to #consultation-form or generic clicks for aggressive marketing
+    const handleGlobalClick = (e: MouseEvent) => {
+      let target = e.target as HTMLElement | null;
+      let isConsultationLink = false;
+
+      // Check if click originates from an anchor link or button heading to #consultation-form
+      while (target && target.tagName !== 'BODY') {
+        if (target.tagName === 'A' && target.getAttribute('href') === '#consultation-form') {
+          isConsultationLink = true;
+          break;
+        }
+        target = target.parentElement;
+      }
+
+      if (isConsultationLink) {
+        e.preventDefault();
+        setIsOpen(true);
+        hasAggressivelyOpened.current = true; // prevent double opening
+        return;
+      }
+
+      // Aggressive marketing: First click anywhere on the page opens the popup
+      // To avoid annoying interactions with other valid links/swipes, we do a basic check
+      // only trigger if they clicked on bg or non-interactive elements, OR trigger on anything?
+      // "Whenver user clicks anywhere then it should open that popup"
+      if (!hasAggressivelyOpened.current) {
+         hasAggressivelyOpened.current = true;
+         // delay slightly so the click doesn't immediately dismiss or feel glitchy
+         setTimeout(() => setIsOpen(true), 100);
+      }
+    };
+
+    document.addEventListener("click", handleGlobalClick);
+    return () => document.removeEventListener("click", handleGlobalClick);
+  }, []);
+
+  // Also open if URL hash is already there on mount
+  useEffect(() => {
+    if (window.location.hash === '#consultation-form') {
+      setIsOpen(true);
+    }
+  }, []);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.fullName || !formData.phone || !formData.email || !formData.city || !formData.propertyType || !formData.budget || formData.selectedNeeds.length === 0 || !formData.source) {
+      alert("Please fill all required fields.");
+      return;
+    }
+    setSubmitted(true);
+  };
+
+  const toggleNeed = (need: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      selectedNeeds: prev.selectedNeeds.includes(need)
+        ? prev.selectedNeeds.filter((n) => n !== need)
+        : [...prev.selectedNeeds, need],
+    }));
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm cursor-pointer"
+          />
+          
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="relative w-full max-w-4xl bg-white border border-zinc-200 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
+          >
+            {/* Close Button */}
+            <button 
+              onClick={() => setIsOpen(false)}
+              className="absolute top-4 right-4 z-50 text-zinc-400 hover:text-brand-black bg-zinc-100 hover:bg-zinc-200 p-2 rounded-full transition-all"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="flex-1 overflow-y-auto w-full hide-scrollbar p-6 sm:p-10">
+              <AnimatePresence mode="wait">
+                {submitted ? (
+                  <motion.div 
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="py-20 text-center flex flex-col items-center justify-center h-full"
+                  >
+                    <div className="w-20 h-20 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold rounded-full flex items-center justify-center mx-auto mb-8">
+                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <h2 className="font-serif text-3xl font-light text-brand-black mb-4">Consultation Requested</h2>
+                    <p className="text-zinc-500 font-sans font-light leading-relaxed mb-10 max-w-sm mx-auto">
+                      Thank you for trusting Hayat Interiors. One of our lead designers will contact you within 2 hours.
+                    </p>
+                    <button 
+                      onClick={() => setIsOpen(false)}
+                      className="text-[10px] uppercase tracking-[0.2em] text-brand-gold hover:text-brand-black transition-colors border-b border-brand-gold/30 pb-1"
+                    >
+                      Return to Website
+                    </button>
+                  </motion.div>
+                ) : (
+                  <motion.div key="form-content" className="flex flex-col gap-8">
+                    <div className="text-center md:text-left mb-2">
+                       <p className="text-[10px] text-brand-gold uppercase tracking-[0.3em] mb-3 font-medium">Initial Consultation</p>
+                       <h2 className="font-serif text-3xl sm:text-4xl font-light text-brand-black leading-tight">
+                         Design Your Dream Space
+                       </h2>
+                    </div>
+
+                    <form onSubmit={handleSubmit} className="space-y-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                          <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Full Name *</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="e.g. Rahul Sharma"
+                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black placeholder:text-zinc-300"
+                            value={formData.fullName}
+                            onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Phone Number *</label>
+                          <div className="flex items-center border-b border-zinc-200 focus-within:border-brand-gold transition-colors">
+                            <span className="text-zinc-400 font-sans text-sm mr-3 pb-3 pt-3">+91</span>
+                            <input
+                              required
+                              type="tel"
+                              placeholder="99999 99999"
+                              className="w-full bg-transparent py-3 outline-none font-sans text-sm text-brand-black placeholder:text-zinc-300"
+                              value={formData.phone}
+                              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                          <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Email Address *</label>
+                          <input
+                            required
+                            type="email"
+                            placeholder="rahul@example.com"
+                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black placeholder:text-zinc-300"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Location in Bangalore *</label>
+                          <input
+                            required
+                            type="text"
+                            placeholder="e.g. Whitefield, Indiranagar"
+                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black placeholder:text-zinc-300"
+                            value={formData.city}
+                            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                          <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Property Type *</label>
+                          <select
+                            required
+                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black appearance-none cursor-pointer"
+                            value={formData.propertyType}
+                            onChange={(e) => setFormData({ ...formData, propertyType: e.target.value })}
+                          >
+                            <option value="" className="bg-white text-zinc-400">Select Type</option>
+                            {propertyTypes.map((t) => <option key={t} value={t} className="bg-white">{t}</option>)}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Investment Range *</label>
+                          <select
+                            required
+                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black appearance-none cursor-pointer"
+                            value={formData.budget}
+                            onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+                          >
+                            <option value="" className="bg-white text-zinc-400">Select Budget</option>
+                            {budgets.map((b) => <option key={b} value={b} className="bg-white">{b}</option>)}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-4 font-medium">Areas of Interest *</label>
+                        <div className="flex flex-wrap gap-2.5">
+                          {needs.map((need) => (
+                            <button
+                              key={need}
+                              type="button"
+                              onClick={() => toggleNeed(need)}
+                              className={`px-5 py-2 rounded-none text-[11px] uppercase tracking-wide font-medium border transition-all duration-300 ${
+                                formData.selectedNeeds.includes(need)
+                                  ? "bg-brand-gold border-brand-gold text-white"
+                                  : "bg-white border-zinc-200 text-zinc-400 hover:border-brand-gold/50 hover:text-brand-black"
+                              }`}
+                            >
+                              {need}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">How did you find us? *</label>
+                        <select
+                          required
+                          className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black appearance-none cursor-pointer"
+                          value={formData.source}
+                          onChange={(e) => setFormData({ ...formData, source: e.target.value })}
+                        >
+                          <option value="" className="bg-white text-zinc-400">Select Source</option>
+                          {sources.map((s) => <option key={s} value={s} className="bg-white">{s}</option>)}
+                        </select>
+                      </div>
+
+                      <div className="pt-6">
+                        <button
+                          type="submit"
+                          className="group relative flex w-full items-center justify-center overflow-hidden bg-brand-gold px-8 py-5 font-sans text-xs font-semibold tracking-[0.2em] text-brand-black transition-all"
+                        >
+                          <span className="relative z-10 uppercase transition-transform group-hover:-translate-y-0.5 group-hover:text-white">Request Consultation</span>
+                          <div className="absolute inset-0 z-0 h-full w-0 bg-brand-black transition-all duration-500 ease-out group-hover:w-full"></div>
+                        </button>
+                      </div>
+
+                      <p className="text-center text-[10px] text-zinc-400 uppercase tracking-widest pt-2">
+                        Secure & Confidential Inquiry
+                      </p>
+                    </form>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
