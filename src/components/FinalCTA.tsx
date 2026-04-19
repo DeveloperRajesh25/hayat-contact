@@ -6,6 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function FinalCTA() {
   const [submitted, setSubmitted] = useState(false);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+
 
   return (
     <section className="relative py-32 overflow-hidden bg-white border-t border-zinc-100">
@@ -40,21 +43,36 @@ export default function FinalCTA() {
               <form 
                 onSubmit={(e) => {
                   e.preventDefault();
+                  const message = `Hello Hayat Interiors, I'm interested in a consultation.
+
+*Details:*
+• Name: ${name}
+• Phone: ${phone}
+
+Please get back to me.`;
+                  const encodedMessage = encodeURIComponent(message);
+                  const whatsappUrl = `https://wa.me/919886276722?text=${encodedMessage}`;
+                  window.open(whatsappUrl, "_blank");
                   setSubmitted(true);
                 }}
                 className="w-full flex flex-col md:flex-row gap-0 border border-zinc-100 p-1 bg-white shadow-xl shadow-black/[0.02]"
               >
+
                 <input
                   required
                   type="text"
                   placeholder="Your Name"
                   className="flex-1 bg-transparent px-6 py-5 outline-none text-brand-black font-sans text-sm font-light border-b md:border-b-0 md:border-r border-zinc-100 placeholder:text-zinc-300"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
                 <input
                   required
                   type="tel"
                   placeholder="Phone Number"
                   className="flex-1 bg-transparent px-6 py-5 outline-none text-brand-black font-sans text-sm font-light placeholder:text-zinc-300"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
                 <button
                   type="submit"
@@ -72,7 +90,7 @@ export default function FinalCTA() {
                   <div className="h-[1px] flex-1 bg-zinc-100"></div>
                 </div>
                 <a
-                  href="https://wa.me/919999999999"
+                  href="https://wa.me/919886276722"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 border border-zinc-200 bg-white text-zinc-600 font-sans text-[11px] uppercase tracking-widest px-8 py-4 hover:bg-zinc-50 hover:border-brand-gold transition-all"

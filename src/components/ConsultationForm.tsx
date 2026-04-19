@@ -75,6 +75,26 @@ export default function ConsultationForm() {
       alert("Please fill all required fields.");
       return;
     }
+
+    const message = `Hello Hayat Interiors, I'm interested in a consultation.
+
+*Details:*
+• Name: ${formData.fullName}
+• Phone: ${formData.phone}
+• Email: ${formData.email}
+• Location: ${formData.city}
+• Property: ${formData.propertyType}
+• Budget: ${formData.budget}
+• Needs: ${formData.selectedNeeds.join(", ")}
+• Source: ${formData.source}
+${formData.message ? `• Message: ${formData.message}` : ""}
+
+Please get back to me.`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/919886276722?text=${encodedMessage}`;
+    
+    window.open(whatsappUrl, "_blank");
     setSubmitted(true);
   };
 

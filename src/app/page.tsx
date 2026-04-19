@@ -5,7 +5,7 @@ import ConsultationForm from "@/components/ConsultationForm";
 import ServicesSection from "@/components/ServicesSection";
 import PriceCalculator from "@/components/PriceCalculator";
 import WhyChooseSection from "@/components/WhyChooseSection";
-import VideoGallery from "@/components/VideoGallery";
+
 import Testimonials from "@/components/Testimonials";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
@@ -22,7 +22,7 @@ export default function Home() {
       <ServicesSection />
       <PriceCalculator />
       <WhyChooseSection />
-      <VideoGallery />
+
       <Testimonials />
       <FinalCTA />
       <Footer />
