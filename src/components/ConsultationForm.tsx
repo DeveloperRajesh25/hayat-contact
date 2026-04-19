@@ -11,6 +11,7 @@ const needs = ["Full Home Interior"];
 export default function ConsultationForm() {
   const [isOpen, setIsOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const hasAggressivelyOpened = useRef(false);
 
   const [formData, setFormData] = useState({
@@ -69,33 +70,37 @@ export default function ConsultationForm() {
     }
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.fullName || !formData.phone || !formData.email || !formData.city || !formData.propertyType || !formData.budget || formData.selectedNeeds.length === 0 || !formData.source) {
       alert("Please fill all required fields.");
       return;
     }
 
-    const message = `Hello Hayat Interiors, I'm interested in a consultation.
+    setIsSubmitting(true);
 
-*Details:*
-• Name: ${formData.fullName}
-• Phone: ${formData.phone}
-• Email: ${formData.email}
-• Location: ${formData.city}
-• Property: ${formData.propertyType}
-• Budget: ${formData.budget}
-• Needs: ${formData.selectedNeeds.join(", ")}
-• Source: ${formData.source}
-${formData.message ? `• Message: ${formData.message}` : ""}
+    try {
+      // Replace this URL with your Google Apps Script Web App URL
+      const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzT9RgKCeuKbvHIACe0XZMJ5Y5WGf60qVP12d6aTzjYjgqqt-twupFzTHWBmwmOgkOiNg/exec";
+      
+      const response = await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors", // Required for Google Apps Script
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-Please get back to me.`;
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/919886276722?text=${encodedMessage}`;
-    
-    window.open(whatsappUrl, "_blank");
-    setSubmitted(true);
+      // Since mode is 'no-cors', we can't read the response object, 
+      // but we can assume success if no error was thrown during fetch
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("There was an error submitting the form. Please try again or contact us directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const toggleNeed = (need: string) => {
@@ -288,9 +293,12 @@ Please get back to me.`;
                       <div className="pt-6">
                         <button
                           type="submit"
-                          className="group relative flex w-full items-center justify-center overflow-hidden bg-brand-gold px-8 py-5 font-sans text-xs font-semibold tracking-[0.2em] text-brand-black transition-all"
+                          disabled={isSubmitting}
+                          className="group relative flex w-full items-center justify-center overflow-hidden bg-brand-gold px-8 py-5 font-sans text-xs font-semibold tracking-[0.2em] text-brand-black transition-all disabled:opacity-70"
                         >
-                          <span className="relative z-10 uppercase transition-transform group-hover:-translate-y-0.5 group-hover:text-white">Request Consultation</span>
+                          <span className="relative z-10 uppercase transition-transform group-hover:-translate-y-0.5 group-hover:text-white">
+                            {isSubmitting ? "Submitting..." : "Request Consultation"}
+                          </span>
                           <div className="absolute inset-0 z-0 h-full w-0 bg-brand-black transition-all duration-500 ease-out group-hover:w-full"></div>
                         </button>
                       </div>
