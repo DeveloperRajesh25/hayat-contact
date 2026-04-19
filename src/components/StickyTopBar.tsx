@@ -8,8 +8,8 @@ export default function StickyTopBar() {
           <span className="h-1.5 w-1.5 rounded-full bg-brand-gold animate-pulse"></span>
           <span className="font-medium">Complimentary Design Consultation</span>
         </div>
-        <a 
-          href="tel:+919886276722" 
+        <a
+          href="tel:+919886276722"
           className="text-brand-gold font-bold hover:text-brand-black transition-colors"
         >
           +91 98862 76722

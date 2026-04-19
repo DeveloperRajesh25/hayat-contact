@@ -6,38 +6,8 @@ const services = [
   {
     icon: "✦",
     name: "Full Home Interior",
-    desc: "Complete home transformation from design to execution.",
-    price: "₹3.5 Lakhs",
-  },
-  {
-    icon: "✦",
-    name: "Modular Kitchen",
-    desc: "Fully fitted modern kitchens with ergonomic designs.",
-    price: "₹75,000",
-  },
-  {
-    icon: "✦",
-    name: "Living Room Design",
-    desc: "Statement living spaces that reflect your personality.",
-    price: "₹50,000",
-  },
-  {
-    icon: "✦",
-    name: "Master Bedroom",
-    desc: "Luxurious sleep sanctuaries for ultimate relaxation.",
-    price: "₹45,000",
-  },
-  {
-    icon: "✦",
-    name: "Bathroom Design",
-    desc: "Spa-like bathroom interiors with premium fittings.",
-    price: "₹30,000",
-  },
-  {
-    icon: "✦",
-    name: "Office Interior",
-    desc: "Productive, stylish workspaces for your business.",
-    price: "₹1.5 Lakhs",
+    desc: "Premium, end-to-end home transformation from concept to completion with expert site supervision.",
+    price: "₹7 Lakhs",
   },
 ];
 
@@ -51,7 +21,7 @@ export default function ServicesSection() {
           <p className="font-sans text-zinc-500 font-light max-w-xl mx-auto">Premium quality, bespoke designs, and transparent pricing tailored to your unique requirements.</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="flex justify-center mb-16">
           {services.map((s, i) => (
             <motion.div 
               key={i} 
@@ -59,7 +29,7 @@ export default function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="group bg-[#FAFAFA] p-10 border border-zinc-100 transition-all duration-300 hover:border-brand-gold/30 text-left hover:-translate-y-1 hover:shadow-xl hover:shadow-black/[0.02] relative overflow-hidden"
+              className="group bg-[#FAFAFA] p-10 border border-zinc-100 transition-all duration-300 hover:border-brand-gold/30 text-left hover:-translate-y-1 hover:shadow-xl hover:shadow-black/[0.02] relative overflow-hidden max-w-md w-full"
             >
               <div className="absolute top-0 right-0 p-8 text-4xl text-zinc-100 font-serif group-hover:text-brand-gold/5 transition-colors">
                  0{i + 1}

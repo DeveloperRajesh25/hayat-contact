@@ -7,6 +7,7 @@ import PriceCalculator from "@/components/PriceCalculator";
 import WhyChooseSection from "@/components/WhyChooseSection";
 
 import Testimonials from "@/components/Testimonials";
+import CinematicShowcase from "@/components/CinematicShowcase";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import StickyBottomMobile from "@/components/StickyBottomMobile";
@@ -22,6 +23,8 @@ export default function Home() {
       <ServicesSection />
       <PriceCalculator />
       <WhyChooseSection />
+      
+      <CinematicShowcase />
 
       <Testimonials />
       <FinalCTA />

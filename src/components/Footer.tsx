@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="bg-white text-brand-black pt-24 pb-20 border-t border-zinc-100">
       <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20 border-b border-zinc-100 pb-20">
-          
+
           {/* Logo & Tagline */}
           <div className="space-y-6 text-center md:text-left md:col-span-2 pr-0 md:pr-12 md:border-r border-zinc-100/50">
             <div className="font-serif text-3xl font-light tracking-wide text-brand-black uppercase">
@@ -42,13 +42,13 @@ export default function Footer() {
             </p>
             <a href="tel:+919886276722" className="hover:text-brand-gold transition-colors">+91 98862 76722</a>
             <a href="mailto:hello@hayatinteriors.com" className="hover:text-brand-gold transition-colors">hello@hayatinteriors.com</a>
-            
+
             <div className="flex gap-4 pt-4">
               <a href="https://instagram.com/hayatinteriors.co" target="_blank" className="hover:text-brand-gold transition-colors">Instagram</a>
               <a href="https://threads.net/@hayatinteriors.co" target="_blank" className="hover:text-brand-gold transition-colors">Threads</a>
             </div>
-            <a 
-              href="https://wa.me/919886276722" 
+            <a
+              href="https://wa.me/919886276722"
               className="mt-2 inline-block border-b border-brand-gold/20 pb-0.5 text-brand-gold hover:border-brand-gold transition-colors"
             >
               Message via WhatsApp

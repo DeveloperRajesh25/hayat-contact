@@ -19,10 +19,10 @@ const testimonials = [
   },
   {
     stars: 5,
-    quote: "Best decision we made was calling Hayat Interiors. Transparent pricing, no surprises. Our modular kitchen alone gets compliments from every guest!",
+    quote: "Best decision we made was calling Hayat Interiors. Transparent pricing, no surprises. Our full home interior gets compliments from every guest!",
     name: "Arjun K.",
     area: "Koramangala",
-    property: "Modular Kitchen",
+    property: "Full Home Interior",
   },
 ];
 

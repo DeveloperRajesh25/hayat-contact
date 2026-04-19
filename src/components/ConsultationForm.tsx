@@ -4,9 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const propertyTypes = ["2BHK Apartment", "3BHK Apartment", "4BHK", "Villa", "Office", "Others"];
-const budgets = ["Under ₹5 Lakhs", "₹5–10 Lakhs", "₹10–20 Lakhs", "₹20–50 Lakhs", "₹50 Lakhs+"];
+const budgets = ["₹7–10 Lakhs", "₹10–20 Lakhs", "₹20–50 Lakhs", "₹50 Lakhs+"];
 const sources = ["Instagram", "Google", "YouTube", "Friend/Family", "Other"];
-const needs = ["Full Home Interior", "Living Room", "Bedroom", "Kitchen", "Bathroom", "Office Interior"];
+const needs = ["Full Home Interior"];
 
 export default function ConsultationForm() {
   const [isOpen, setIsOpen] = useState(false);
