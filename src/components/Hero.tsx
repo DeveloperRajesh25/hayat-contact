@@ -5,11 +5,13 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80",
-  "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1920&q=80",
-  "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1920&q=80",
-  "https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1920&q=80",
-  "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1920&q=80",
+  "/1.jpeg",
+  "/2.jpeg",
+  "/3.png",
+  "/4.png",
+  "/5.png",
+  "/6.png",
+  "/7.png",
 ];
 
 export default function Hero() {
@@ -24,14 +26,14 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen min-h-[600px] w-full overflow-hidden bg-brand-black">
-      {/* Slideshow with Zoom Effect */}
+      {/* Slideshow with Sliding Effect */}
       <AnimatePresence initial={false}>
         <motion.div
            key={currentSlide}
-           initial={{ opacity: 0, scale: 1.05 }}
-           animate={{ opacity: 1, scale: 1 }}
-           exit={{ opacity: 0 }}
-           transition={{ duration: 1.5, ease: "easeInOut" }}
+           initial={{ x: "100%", opacity: 0 }}
+           animate={{ x: 0, opacity: 1 }}
+           exit={{ x: "-100%", opacity: 0 }}
+           transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
            className="absolute inset-0"
         >
           <Image
