@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -29,6 +30,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} scroll-smooth`}>
       <body className="antialiased">
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-F0PH6XBJH2"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-F0PH6XBJH2');
+          `}
+        </Script>
         {children}
       </body>
     </html>
