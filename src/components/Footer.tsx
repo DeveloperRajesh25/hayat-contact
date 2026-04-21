@@ -41,6 +41,7 @@ export default function Footer() {
               Bengaluru 560045, India
             </p>
             <a href="tel:+919886276722" className="hover:text-brand-green transition-colors">+91 98862 76722</a>
+            <a href="tel:+919535132943" className="hover:text-brand-green transition-colors">+91 95351 32943</a>
             <a href="mailto:hello@hayatinteriors.com" className="hover:text-brand-green transition-colors">hello@hayatinteriors.com</a>
 
             <div className="flex gap-4 pt-4">

@@ -10,7 +10,14 @@ export default function StickyBottomMobile() {
         className="flex-1 flex flex-col items-center justify-center text-white transition-all hover:bg-white/10 border-r border-white/10"
       >
         <Phone size={14} className="mb-0.5" />
-        <span className="text-[8px] font-bold uppercase tracking-[0.2em] mt-0.5">Call</span>
+        <span className="text-[7px] font-bold uppercase tracking-[0.1em]">Call 1</span>
+      </a>
+      <a
+        href="tel:+919535132943"
+        className="flex-1 flex flex-col items-center justify-center text-white transition-all hover:bg-white/10 border-r border-white/10"
+      >
+        <Phone size={14} className="mb-0.5" />
+        <span className="text-[7px] font-bold uppercase tracking-[0.1em]">Call 2</span>
       </a>
       
       <a

@@ -37,13 +37,22 @@ export default function StickyTopBar() {
         </div>
 
         {/* Action Button */}
-        <div className="flex items-center gap-6">
-          <a
-            href="tel:+919886276722"
-            className="hidden sm:block text-sm font-bold tracking-tight text-white hover:text-white/80 transition-colors"
-          >
-            +91 98862 76722
-          </a>
+        <div className="flex items-center gap-4 sm:gap-6">
+          <div className="hidden sm:flex items-center gap-4">
+            <a
+              href="tel:+919886276722"
+              className="text-sm font-bold tracking-tight text-white hover:text-white/80 transition-colors"
+            >
+              +91 98862 76722
+            </a>
+            <span className="text-white/20 text-xs">|</span>
+            <a
+              href="tel:+919535132943"
+              className="text-sm font-bold tracking-tight text-white hover:text-white/80 transition-colors"
+            >
+              +91 95351 32943
+            </a>
+          </div>
           {/* Mobile Action */}
           <a
             href="tel:+919886276722"
