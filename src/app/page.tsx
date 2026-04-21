@@ -10,6 +10,7 @@ import CinematicShowcase from "@/components/CinematicShowcase";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import StickyBottomMobile from "@/components/StickyBottomMobile";
+import PhotoGallery from "@/components/PhotoGallery";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <WhyChooseSection />
       
       <CinematicShowcase />
+      <PhotoGallery />
 
       <Testimonials />
       <FinalCTA />
