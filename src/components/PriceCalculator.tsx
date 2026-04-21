@@ -25,7 +25,7 @@ export default function PriceCalculator() {
     <section className="py-24 bg-[#F5F0EB] border-y border-zinc-200/50">
       <div className="container mx-auto px-4 max-w-5xl">
         <div className="text-center mb-16">
-          <p className="text-[10px] text-brand-gold uppercase tracking-[0.3em] font-medium mb-4">Investment Explorer</p>
+          <p className="text-[10px] text-brand-green uppercase tracking-[0.3em] font-medium mb-4">Investment Explorer</p>
           <h2 className="font-serif text-3xl sm:text-5xl font-light text-brand-black mb-4">Full Home Investment Estimate</h2>
           <p className="font-sans font-light text-zinc-500">Get an instant rough estimate for your end-to-end interior project</p>
         </div>
@@ -41,11 +41,11 @@ export default function PriceCalculator() {
                   onClick={() => setPropertyType(type)}
                   className={`p-4 sm:p-5 border transition-all duration-300 text-center ${
                     propertyType === type 
-                    ? "border-brand-gold bg-white shadow-lg shadow-brand-gold/5" 
-                    : "border-zinc-200 bg-white/50 hover:border-brand-gold/30 hover:bg-white"
+                    ? "border-brand-green bg-white shadow-lg shadow-brand-green/5" 
+                    : "border-zinc-200 bg-white/50 hover:border-brand-green/30 hover:bg-white"
                   }`}
                 >
-                  <span className={`block text-xs sm:text-sm tracking-widest uppercase font-medium ${propertyType === type ? "text-brand-gold" : "text-zinc-500"}`}>{type}</span>
+                  <span className={`block text-xs sm:text-sm tracking-widest uppercase font-medium ${propertyType === type ? "text-brand-green" : "text-zinc-500"}`}>{type}</span>
                 </button>
               ))}
             </div>
@@ -61,12 +61,12 @@ export default function PriceCalculator() {
                   onClick={() => setFinishLevel(level)}
                   className={`p-4 sm:p-5 border transition-all duration-300 text-center ${
                     finishLevel === level 
-                    ? "border-brand-gold bg-white shadow-lg shadow-brand-gold/5" 
-                    : "border-zinc-200 bg-white/50 hover:border-brand-gold/30 hover:bg-white"
+                    ? "border-brand-green bg-white shadow-lg shadow-brand-green/5" 
+                    : "border-zinc-200 bg-white/50 hover:border-brand-green/30 hover:bg-white"
                   }`}
                 >
-                  <span className={`block text-xs sm:text-sm tracking-widest uppercase font-medium ${finishLevel === level ? "text-brand-gold" : "text-zinc-500"}`}>{level}</span>
-                  <span className={`text-[9px] block mt-1 uppercase tracking-[0.2em] ${finishLevel === level ? "text-brand-gold/60" : "text-zinc-400"}`}>
+                  <span className={`block text-xs sm:text-sm tracking-widest uppercase font-medium ${finishLevel === level ? "text-brand-green" : "text-zinc-500"}`}>{level}</span>
+                  <span className={`text-[9px] block mt-1 uppercase tracking-[0.2em] ${finishLevel === level ? "text-brand-green/60" : "text-zinc-400"}`}>
                     {level === 'Basic' ? 'Economy' : level === 'Standard' ? 'Popular' : level === 'Premium' ? 'High-End' : 'Bespoke'}
                   </span>
                 </button>
@@ -79,14 +79,14 @@ export default function PriceCalculator() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-20 border border-brand-gold/20 bg-white p-12 text-center relative overflow-hidden shadow-2xl shadow-black/[0.02]"
+            className="mt-20 border border-brand-green/20 bg-white p-12 text-center relative overflow-hidden shadow-2xl shadow-black/[0.02]"
           >
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.05]">
-               <span className="text-[20rem] font-serif text-brand-gold leading-none">₹</span>
+               <span className="text-[20rem] font-serif text-brand-green leading-none">₹</span>
              </div>
              <div className="relative z-10">
                 <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-400 mb-6 font-medium">Estimated Package Range</p>
-                <div className="font-serif text-4xl sm:text-7xl font-light text-brand-gold mb-10 tracking-tight">
+                <div className="font-serif text-4xl sm:text-7xl font-light text-brand-green mb-10 tracking-tight">
                   <AnimatePresence mode="popLayout">
                     <motion.span
                       key={total}
@@ -101,7 +101,7 @@ export default function PriceCalculator() {
                 </div>
                 <a 
                   href="#consultation-form"
-                  className="group relative inline-flex items-center justify-center overflow-hidden bg-brand-gold px-12 py-5 font-sans text-[10px] font-semibold tracking-[0.2em] text-brand-black transition-all"
+                  className="group relative inline-flex items-center justify-center overflow-hidden bg-brand-green px-12 py-5 font-sans text-[10px] font-semibold tracking-[0.2em] text-white transition-all"
                 >
                   <span className="relative z-10 transition-transform group-hover:-translate-y-0.5 group-hover:text-white">Get Detailed Quotation</span>
                   <div className="absolute inset-0 z-0 h-full w-0 bg-brand-black transition-all duration-500 ease-out group-hover:w-full"></div>

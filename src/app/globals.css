@@ -3,7 +3,8 @@
 @theme {
   --color-brand-black: #0a0a0a;
   --color-brand-dark: #111111;
-  --color-brand-gold: #c9a96e;
+  --color-brand-green: #1B5E4F;
+  --color-brand-green-accent: #059669;
   --color-brand-offwhite: #f5f0eb;
   
   --font-serif: "Playfair Display", serif;
@@ -12,7 +13,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0a0a0a;
+  --foreground: #18181b;
 }
 
 html {

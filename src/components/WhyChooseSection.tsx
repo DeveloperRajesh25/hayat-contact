@@ -27,14 +27,14 @@ const features = [
 
 export default function WhyChooseSection() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-12 md:py-24 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center mb-20">
-          <p className="text-[10px] text-brand-gold uppercase tracking-[0.3em] font-medium mb-4">The Hayat Difference</p>
+        <div className="text-center mb-12 md:mb-20">
+          <p className="text-[10px] text-brand-green uppercase tracking-[0.3em] font-medium mb-4">The Hayat Difference</p>
           <h2 className="font-serif text-3xl sm:text-5xl font-light text-brand-black mb-4">Why Homeowners Trust Us</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-10 md:gap-y-16">
           {features.map((f, i) => (
             <motion.div 
               key={i} 
@@ -44,7 +44,7 @@ export default function WhyChooseSection() {
               transition={{ delay: i * 0.1, duration: 0.6 }}
               className="text-left space-y-6"
             >
-              <div className="text-2xl font-serif text-brand-gold/20 pb-4 border-b border-zinc-100">
+              <div className="text-2xl font-serif text-brand-green/20 pb-4 border-b border-zinc-100">
                 {f.number}
               </div>
               <h3 className="font-serif text-xl font-light text-brand-black">{f.title}</h3>

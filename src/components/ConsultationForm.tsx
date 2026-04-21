@@ -151,7 +151,7 @@ export default function ConsultationForm() {
                     transition={{ duration: 0.5 }}
                     className="py-20 text-center flex flex-col items-center justify-center h-full"
                   >
-                    <div className="w-20 h-20 bg-brand-gold/10 border border-brand-gold/30 text-brand-gold rounded-full flex items-center justify-center mx-auto mb-8">
+                    <div className="w-20 h-20 bg-brand-green/10 border border-brand-green/30 text-brand-green rounded-full flex items-center justify-center mx-auto mb-8">
                       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5 13l4 4L19 7" />
                       </svg>
@@ -162,36 +162,36 @@ export default function ConsultationForm() {
                     </p>
                     <button 
                       onClick={() => setIsOpen(false)}
-                      className="text-[10px] uppercase tracking-[0.2em] text-brand-gold hover:text-brand-black transition-colors border-b border-brand-gold/30 pb-1"
+                      className="text-[10px] uppercase tracking-[0.2em] text-brand-green hover:text-brand-black transition-colors border-b border-brand-green/30 pb-1"
                     >
                       Return to Website
                     </button>
                   </motion.div>
                 ) : (
                   <motion.div key="form-content" className="flex flex-col gap-8">
-                    <div className="text-center md:text-left mb-2">
-                       <p className="text-[10px] text-brand-gold uppercase tracking-[0.3em] mb-3 font-medium">Initial Consultation</p>
-                       <h2 className="font-serif text-3xl sm:text-4xl font-light text-brand-black leading-tight">
+                    <div className="text-center md:text-left mb-1">
+                       <p className="text-[10px] text-brand-green uppercase tracking-[0.3em] mb-2 font-medium">Initial Consultation</p>
+                       <h2 className="font-serif text-2xl sm:text-4xl font-light text-brand-black leading-tight">
                          Design Your Dream Space
                        </h2>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-8">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         <div>
                           <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Full Name *</label>
                           <input
                             required
                             type="text"
                             placeholder="e.g. Rahul Sharma"
-                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black placeholder:text-zinc-300"
+                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-green transition-colors font-sans text-sm text-brand-black placeholder:text-zinc-300"
                             value={formData.fullName}
                             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                           />
                         </div>
                         <div>
                           <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Phone Number *</label>
-                          <div className="flex items-center border-b border-zinc-200 focus-within:border-brand-gold transition-colors">
+                          <div className="flex items-center border-b border-zinc-200 focus-within:border-brand-green transition-colors">
                             <span className="text-zinc-400 font-sans text-sm mr-3 pb-3 pt-3">+91</span>
                             <input
                               required
@@ -205,14 +205,14 @@ export default function ConsultationForm() {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         <div>
                           <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Email Address *</label>
                           <input
                             required
                             type="email"
                             placeholder="rahul@example.com"
-                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black placeholder:text-zinc-300"
+                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-green transition-colors font-sans text-sm text-brand-black placeholder:text-zinc-300"
                             value={formData.email}
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           />
@@ -223,19 +223,19 @@ export default function ConsultationForm() {
                             required
                             type="text"
                             placeholder="e.g. Whitefield, Indiranagar"
-                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black placeholder:text-zinc-300"
+                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-green transition-colors font-sans text-sm text-brand-black placeholder:text-zinc-300"
                             value={formData.city}
                             onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                           />
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         <div>
                           <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Property Type *</label>
                           <select
                             required
-                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black appearance-none cursor-pointer"
+                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-green transition-colors font-sans text-sm text-brand-black appearance-none cursor-pointer"
                             value={formData.propertyType}
                             onChange={(e) => setFormData({ ...formData, propertyType: e.target.value })}
                           >
@@ -247,7 +247,7 @@ export default function ConsultationForm() {
                           <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Investment Range *</label>
                           <select
                             required
-                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black appearance-none cursor-pointer"
+                            className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-green transition-colors font-sans text-sm text-brand-black appearance-none cursor-pointer"
                             value={formData.budget}
                             onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                           >
@@ -267,8 +267,8 @@ export default function ConsultationForm() {
                               onClick={() => toggleNeed(need)}
                               className={`px-5 py-2 rounded-none text-[11px] uppercase tracking-wide font-medium border transition-all duration-300 ${
                                 formData.selectedNeeds.includes(need)
-                                  ? "bg-brand-gold border-brand-gold text-white"
-                                  : "bg-white border-zinc-200 text-zinc-400 hover:border-brand-gold/50 hover:text-brand-black"
+                                  ? "bg-brand-green border-brand-green text-white"
+                                  : "bg-white border-zinc-200 text-zinc-400 hover:border-brand-green/50 hover:text-brand-black"
                               }`}
                             >
                               {need}
@@ -281,7 +281,7 @@ export default function ConsultationForm() {
                         <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">How did you find us? *</label>
                         <select
                           required
-                          className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-gold transition-colors font-sans text-sm text-brand-black appearance-none cursor-pointer"
+                          className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-green transition-colors font-sans text-sm text-brand-black appearance-none cursor-pointer"
                           value={formData.source}
                           onChange={(e) => setFormData({ ...formData, source: e.target.value })}
                         >
@@ -294,7 +294,7 @@ export default function ConsultationForm() {
                         <button
                           type="submit"
                           disabled={isSubmitting}
-                          className="group relative flex w-full items-center justify-center overflow-hidden bg-brand-gold px-8 py-5 font-sans text-xs font-semibold tracking-[0.2em] text-brand-black transition-all disabled:opacity-70"
+                          className="group relative flex w-full items-center justify-center overflow-hidden bg-brand-green px-8 py-5 font-sans text-xs font-semibold tracking-[0.2em] text-white transition-all disabled:opacity-70"
                         >
                           <span className="relative z-10 uppercase transition-transform group-hover:-translate-y-0.5 group-hover:text-white">
                             {isSubmitting ? "Submitting..." : "Request Consultation"}

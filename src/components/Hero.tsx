@@ -43,39 +43,46 @@ export default function Hero() {
             className="object-cover"
             priority
           />
-          {/* Very subtle bottom vignette for legibility of indicators, but keeping images "fully visible" as requested */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+          {/* subtle vignettes for legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/40 pointer-events-none z-10" />
         </motion.div>
       </AnimatePresence>
 
       {/* Content Layer */}
-      <div className="relative z-20 flex h-full items-center justify-center px-4 pt-20 text-center sm:px-6">
+      <div className="relative z-20 flex h-full items-center justify-center px-4 pt-24 text-center sm:px-6">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, delay: 0.3 }}
-          className="max-w-5xl"
+          className="w-full max-w-5xl flex flex-col items-center"
         >
-          <motion.span 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mb-6 inline-block text-[10px] font-bold tracking-[0.4em] text-brand-gold uppercase sm:text-xs drop-shadow-sm"
-          >
-            Hayat Interiors • Bengaluru
-          </motion.span>
-          <h1 className="mb-10 font-serif text-5xl font-light leading-[1.1] text-white drop-shadow-2xl md:text-8xl lg:text-9xl">
+        
+
+          <h1 className="mb-8 font-serif text-5xl font-light leading-[1.1] text-white drop-shadow-2xl md:text-8xl lg:text-9xl">
             Contemporary <br />
-            <span className="italic text-white/90">Luxury</span>
+            <span className="italic text-brand-green">Luxury</span>
           </h1>
+
+          <p className="mb-12 max-w-2xl text-sm font-light leading-relaxed text-white/80 sm:text-lg">
+            Bespoke interior design solutions for premium homes in Bengaluru.
+          </p>
           
-          <div className="flex flex-col items-center justify-center gap-8 sm:flex-row">
+          <div className="w-full max-w-xl flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="#consultation-form"
-              className="group relative overflow-hidden border border-white/40 bg-white/5 backdrop-blur-[2px] px-14 py-5 font-sans text-[11px] font-bold uppercase tracking-[0.3em] text-white transition-all hover:border-brand-gold"
+              className="group relative flex w-full sm:w-auto items-center justify-center gap-3 border border-brand-green bg-brand-green px-12 py-5 transition-all duration-300 text-white"
             >
-              <span className="relative z-10 transition-colors group-hover:text-brand-black">Enquire Now</span>
-              <div className="absolute inset-0 z-0 h-full w-0 bg-brand-gold transition-all duration-300 ease-out group-hover:w-full"></div>
+              <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em]">Request Callback</span>
+              <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a
+              href="#consultation-form"
+              className="group relative flex w-full sm:w-auto items-center justify-center gap-3 border border-white/20 bg-white/5 backdrop-blur-md px-12 py-5 transition-all duration-300 text-white hover:border-brand-green"
+            >
+              <span className="font-sans text-[11px] font-bold uppercase tracking-[0.2em]">Enquire Now</span>
+              <div className="absolute inset-0 z-[-1] h-full w-0 bg-brand-green transition-all duration-500 ease-out group-hover:w-full" />
             </a>
           </div>
         </motion.div>
@@ -88,7 +95,7 @@ export default function Hero() {
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`h-[2px] transition-all duration-700 ${
-              index === currentSlide ? "w-10 bg-brand-gold" : "w-4 bg-white/20 hover:bg-white/40"
+              index === currentSlide ? "w-10 bg-brand-green" : "w-4 bg-white/20 hover:bg-white/40"
             }`}
              aria-label={`Go to slide ${index + 1}`}
           />
@@ -98,7 +105,7 @@ export default function Hero() {
       {/* Location / Meta */}
       <div className="absolute bottom-10 right-10 z-30 hidden items-center gap-3 font-sans text-[9px] font-bold tracking-[0.2em] text-white/60 uppercase lg:flex">
         <span>EST. 2018</span>
-        <div className="h-1 w-1 rounded-full bg-brand-gold" />
+        <div className="h-1 w-1 rounded-full bg-brand-green" />
         <span>Bespoke Solutions</span>
       </div>
     </section>

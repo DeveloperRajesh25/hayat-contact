@@ -28,10 +28,10 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-[#F5F0EB] overflow-hidden">
+    <section className="py-12 md:py-24 bg-[#F5F0EB] overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center mb-20">
-          <p className="text-[10px] text-brand-gold uppercase tracking-[0.3em] font-medium mb-4">Client Expressions</p>
+        <div className="text-center mb-12 md:mb-20">
+          <p className="text-[10px] text-brand-green uppercase tracking-[0.3em] font-medium mb-4">Client Expressions</p>
           <h2 className="font-serif text-3xl sm:text-5xl font-light text-brand-black mb-4">What Our Clients Say</h2>
         </div>
 
@@ -47,14 +47,14 @@ export default function Testimonials() {
             >
               <div className="flex gap-2 mb-8">
                 {[...Array(t.stars)].map((_, j) => (
-                  <span key={j} className="text-brand-gold text-xs">✦</span>
+                  <span key={j} className="text-brand-green text-xs">✦</span>
                 ))}
               </div>
               <p className="font-sans font-light text-zinc-500 leading-relaxed mb-10 italic">
                 "{t.quote}"
               </p>
               <div className="border-t border-zinc-100 pt-6 mt-auto">
-                <div className="font-serif text-lg text-brand-black font-light group-hover:text-brand-gold transition-colors">{t.name}</div>
+                <div className="font-serif text-lg text-brand-black font-light group-hover:text-brand-green transition-colors">{t.name}</div>
                 <div className="text-[9px] text-zinc-400 uppercase tracking-widest mt-1">
                   {t.area} <span className="mx-1 text-zinc-200">|</span> {t.property}
                 </div>

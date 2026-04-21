@@ -11,7 +11,7 @@ export default function FinalCTA() {
 
 
   return (
-    <section className="relative py-32 overflow-hidden bg-white border-t border-zinc-100">
+    <section className="relative py-16 md:py-32 overflow-hidden bg-white border-t border-zinc-100">
       {/* Background Image */}
       <div className="absolute inset-0 opacity-[0.03] grayscale">
         <Image
@@ -25,7 +25,7 @@ export default function FinalCTA() {
 
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-3xl mx-auto">
-          <p className="text-[10px] text-brand-gold uppercase tracking-[0.3em] font-medium mb-4">Your Next Step</p>
+          <p className="text-[10px] text-brand-green uppercase tracking-[0.3em] font-medium mb-4">Your Next Step</p>
           <h2 className="font-serif text-3xl sm:text-6xl font-light text-brand-black mb-6 leading-tight">Ready to Transform<br />Your Home?</h2>
           <p className="font-sans text-zinc-500 mb-12 font-light text-base max-w-lg mx-auto leading-relaxed">
             Book your complimentary consultation today. Our design team will reach out to you within 2 hours.
@@ -76,7 +76,7 @@ Please get back to me.`;
                 />
                 <button
                   type="submit"
-                  className="group relative flex items-center justify-center overflow-hidden bg-brand-gold px-12 py-5 font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-brand-black transition-all"
+                  className="group relative flex items-center justify-center overflow-hidden bg-brand-green px-12 py-5 font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-white transition-all"
                 >
                   <span className="relative z-10 transition-transform group-hover:-translate-y-0.5 group-hover:text-white">Book Now</span>
                   <div className="absolute inset-0 z-0 h-full w-0 bg-brand-black transition-all duration-500 ease-out group-hover:w-full"></div>
@@ -93,7 +93,7 @@ Please get back to me.`;
                   href="https://wa.me/919886276722"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 border border-zinc-200 bg-white text-zinc-600 font-sans text-[11px] uppercase tracking-widest px-8 py-4 hover:bg-zinc-50 hover:border-brand-gold transition-all"
+                  className="flex items-center gap-3 border border-zinc-200 bg-white text-zinc-600 font-sans text-[11px] uppercase tracking-widest px-8 py-4 hover:bg-zinc-50 hover:border-brand-green transition-all"
                 >
                   <span className="">WhatsApp Us</span>
                 </a>
@@ -107,9 +107,9 @@ Please get back to me.`;
               key="cta-success"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="border border-brand-gold/20 bg-brand-gold/5 p-16 text-center shadow-lg shadow-brand-gold/5"
+              className="border border-brand-green/20 bg-brand-green/5 p-16 text-center shadow-lg shadow-brand-green/5"
             >
-              <h3 className="text-3xl font-serif text-brand-black font-light mb-4 text-brand-gold">Request Received</h3>
+              <h3 className="text-3xl font-serif text-brand-black font-light mb-4 text-brand-green">Request Received</h3>
               <p className="text-zinc-500 font-light text-sm max-w-sm mx-auto">We'll be in touch with you shortly to schedule your design consultation.</p>
             </motion.div>
           )}
