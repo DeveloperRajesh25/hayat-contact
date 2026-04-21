@@ -36,13 +36,14 @@ export default function WhyChooseSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-10 md:gap-y-16">
           {features.map((f, i) => (
-            <motion.div 
+            <motion.a 
               key={i} 
+              href="#consultation-form"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="text-left space-y-6"
+              className="group block text-left space-y-6 cursor-pointer"
             >
               <div className="text-2xl font-serif text-brand-green/20 pb-4 border-b border-zinc-100">
                 {f.number}
@@ -51,7 +52,7 @@ export default function WhyChooseSection() {
               <p className="font-sans text-sm text-zinc-500 leading-relaxed font-light">
                 {f.desc}
               </p>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>

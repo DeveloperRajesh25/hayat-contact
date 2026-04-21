@@ -23,13 +23,14 @@ export default function ServicesSection() {
 
         <div className="flex justify-center mb-16">
           {services.map((s, i) => (
-            <motion.div 
+            <motion.a 
               key={i} 
+              href="#consultation-form"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="group bg-[#FAFAFA] p-10 border border-zinc-100 transition-all duration-300 hover:border-brand-green/30 text-left hover:-translate-y-1 hover:shadow-xl hover:shadow-black/[0.02] relative overflow-hidden max-w-md w-full"
+              className="group block bg-[#FAFAFA] p-10 border border-zinc-100 transition-all duration-300 hover:border-brand-green/30 text-left hover:-translate-y-1 hover:shadow-xl hover:shadow-black/[0.02] relative overflow-hidden max-w-md w-full cursor-pointer"
             >
               <div className="absolute top-0 right-0 p-8 text-4xl text-zinc-100 font-serif group-hover:text-brand-green/5 transition-colors">
                  0{i + 1}
@@ -43,14 +44,13 @@ export default function ServicesSection() {
                   <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-400 block mb-1">Starting from</span>
                   <span className="text-xl font-serif text-brand-green">{s.price}</span>
                 </div>
-                <a 
-                  href="#consultation-form"
+                <div 
                   className="text-[10px] pb-1 border-b border-transparent uppercase tracking-[0.2em] text-zinc-400 group-hover:text-brand-green group-hover:border-brand-green transition-all"
                 >
                   Get Quote
-                </a>
+                </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
 

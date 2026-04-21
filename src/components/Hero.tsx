@@ -26,27 +26,29 @@ export default function Hero() {
 
   return (
     <section className="relative h-[100svh] w-full overflow-hidden bg-brand-black">
-      {/* Slideshow */}
-      <AnimatePresence initial={false}>
-        <motion.div
-           key={currentSlide}
-           initial={{ opacity: 0 }}
-           animate={{ opacity: 1 }}
-           exit={{ opacity: 0 }}
-           transition={{ duration: 2, ease: "easeInOut" }}
-           className="absolute inset-0"
-        >
-          <Image
-            src={slides[currentSlide]}
-            alt={`Luxury Interior ${currentSlide + 1}`}
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* subtle vignettes for legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/40 pointer-events-none z-10" />
-        </motion.div>
-      </AnimatePresence>
+      {/* Slideshow (Clickable for lead gen) */}
+      <a href="#consultation-form" className="absolute inset-0 z-10 cursor-pointer overflow-hidden">
+        <AnimatePresence initial={false}>
+          <motion.div
+             key={currentSlide}
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             exit={{ opacity: 0 }}
+             transition={{ duration: 2, ease: "easeInOut" }}
+             className="absolute inset-0"
+          >
+            <Image
+              src={slides[currentSlide]}
+              alt={`Luxury Interior ${currentSlide + 1}`}
+              fill
+              className="object-cover"
+              priority
+            />
+            {/* subtle vignettes for legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/40 pointer-events-none z-10" />
+          </motion.div>
+        </AnimatePresence>
+      </a>
 
       {/* Content Layer */}
       <div className="relative z-20 flex h-full items-center justify-center px-4 pt-24 text-center sm:px-6">

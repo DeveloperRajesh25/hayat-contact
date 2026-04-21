@@ -35,15 +35,16 @@ export default function Testimonials() {
           <h2 className="font-serif text-3xl sm:text-5xl font-light text-brand-black mb-4">What Our Clients Say</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((t, i) => (
-            <motion.div 
+            <motion.a 
               key={i} 
+              href="#consultation-form"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
-              className="bg-white p-10 border border-zinc-200/50 relative group shadow-sm hover:shadow-xl hover:shadow-black/[0.02] transition-all"
+              transition={{ delay: i * 0.1, duration: 0.6 }}
+              className="bg-white p-8 border border-zinc-100 group transition-all duration-300 hover:border-brand-green/30 hover:shadow-xl hover:shadow-black/[0.02] cursor-pointer block"
             >
               <div className="flex gap-2 mb-8">
                 {[...Array(t.stars)].map((_, j) => (
@@ -59,7 +60,7 @@ export default function Testimonials() {
                   {t.area} <span className="mx-1 text-zinc-200">|</span> {t.property}
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </div>

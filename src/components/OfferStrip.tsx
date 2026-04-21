@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function OfferStrip() {
   return (
-    <div className="w-full bg-[#fdfaf6] py-3 border-y border-[#f5f0eb]">
+    <a href="#consultation-form" className="block w-full bg-[#fdfaf6] py-3 border-y border-[#f5f0eb] cursor-pointer hover:bg-[#f9f5ef] transition-colors">
       <div className="container mx-auto px-4 text-center">
         <motion.p 
           initial={{ opacity: 0 }}
@@ -19,6 +19,6 @@ export default function OfferStrip() {
           <span className="h-1.5 w-1.5 rounded-full bg-brand-green/40 animate-pulse"></span>
         </motion.p>
       </div>
-    </div>
+    </a>
   );
 }
