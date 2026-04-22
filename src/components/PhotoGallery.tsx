@@ -1,29 +1,45 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
-  { src: "/gallery-images/1.JPG", alt: "Modern architectural project 1", className: "md:col-span-2 md:row-span-2 col-span-2 row-span-2" },
-  { src: "/gallery-images/2.jpg", alt: "Modern architectural project 2", className: "col-span-1 row-span-1" },
-  { src: "/gallery-images/3.jpg", alt: "Modern architectural project 3", className: "col-span-1 row-span-1" },
-  { src: "/gallery-images/4.JPG", alt: "Modern architectural project 4", className: "md:col-span-1 md:row-span-2 col-span-2 row-span-1" },
-  { src: "/gallery-images/5.JPG", alt: "Modern architectural project 5", className: "col-span-1 row-span-1" },
-  { src: "/gallery-images/7.jpg", alt: "Modern architectural project 6", className: "md:col-span-2 md:row-span-1 col-span-2 row-span-1" },
-  { src: "/gallery-images/8.jpg", alt: "Modern architectural project 7", className: "col-span-1 row-span-1" },
-  { src: "/gallery-images/9.jpg", alt: "Modern architectural project 8", className: "col-span-1 row-span-1" },
-  { src: "/gallery-images/10.jpg", alt: "Modern architectural project 9", className: "md:col-span-2 md:row-span-2 col-span-2 row-span-2" },
-  { src: "/gallery-images/11.png", alt: "Modern architectural project 10", className: "col-span-1 row-span-1" },
-  { src: "/gallery-images/12.JPG", alt: "Modern architectural project 11", className: "col-span-1 row-span-1" },
-  { src: "/gallery-images/14.jpg", alt: "Modern architectural project 12", className: "md:col-span-1 md:row-span-2 col-span-1 row-span-1" },
-  { src: "/gallery-images/15.JPG", alt: "Modern architectural project 13", className: "md:col-span-2 md:row-span-1 col-span-1 row-span-1" },
-  { src: "/gallery-images/17.jpg", alt: "Modern architectural project 14", className: "col-span-1 row-span-1" },
-  { src: "/gallery-images/18.jpeg", alt: "Modern architectural project 15", className: "col-span-1 row-span-1" },
+  { src: "/gallery-images/1.JPG", alt: "Luxury residence interior design" },
+  { src: "/gallery-images/2.jpg", alt: "Modern living room concept" },
+  { src: "/gallery-images/3.jpg", alt: "Premium kitchen design" },
+  { src: "/gallery-images/4.JPG", alt: "Contemporary bedroom interior" },
+  { src: "/gallery-images/5.JPG", alt: "Elegant dining area" },
+  { src: "/gallery-images/6.JPG", alt: "Sophisticated lounge space" },
+  { src: "/gallery-images/7.jpg", alt: "Minimalist workspace design" },
+  { src: "/gallery-images/8.jpg", alt: "High-end bathroom finish" },
+  { src: "/gallery-images/9.jpg", alt: "Curated decor details" },
+  { src: "/gallery-images/10.jpg", alt: "Bespoke cabinetry project" },
+  { src: "/gallery-images/11.png", alt: "Luxe lighting installation" },
+  { src: "/gallery-images/12.JPG", alt: "Custom feature wall" },
+  { src: "/gallery-images/13.JPG", alt: "Open-plan living design" },
+  { src: "/gallery-images/14.jpg", alt: "Architectural lighting setup" },
+  { src: "/gallery-images/15.JPG", alt: "Texture-rich interior layout" },
+  { src: "/gallery-images/16.JPG", alt: "Modern stairwell architecture" },
+  { src: "/gallery-images/17.jpg", alt: "Premium walk-in closet" },
+  { src: "/gallery-images/18.jpeg", alt: "Cozy reading nook design" },
 ];
 
 export default function PhotoGallery() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, clientWidth } = scrollContainerRef.current;
+      const scrollAmount = clientWidth * 0.8;
+      const scrollTo = direction === "left" ? scrollLeft - scrollAmount : scrollLeft + scrollAmount;
+      scrollContainerRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="py-20 bg-white" id="gallery">
+    <section className="py-20 bg-white overflow-hidden" id="gallery">
       <div className="max-w-[1920px] mx-auto">
         <div className="text-center mb-16 px-4">
           <motion.span
@@ -54,38 +70,85 @@ export default function PhotoGallery() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 auto-rows-[200px] md:auto-rows-[300px] grid-flow-dense px-2 md:px-0">
-          {images.map((image, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: (index % 5) * 0.1 }}
-              viewport={{ once: true }}
-              className={`relative overflow-hidden group bg-zinc-100 rounded-xl md:rounded-2xl ${image.className}`}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                fill
-                priority={index < 4}
-                quality={60}
-                className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-brand-green/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6 md:p-8">
-                <p className="text-white text-xs font-medium tracking-[0.2em] uppercase opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                  Hayat Interiors
-                </p>
-                <h3 className="text-white text-lg md:text-2xl font-serif mt-2 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                  Featured Space
-                </h3>
-              </div>
-            </motion.div>
-          ))}
+        <div className="relative group px-4 md:px-0">
+          {/* Navigation Buttons - Hidden on mobile, reveal on hover for desktop */}
+          <button
+            onClick={() => scroll("left")}
+            className="absolute left-8 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/90 backdrop-blur-md border border-zinc-200 shadow-xl text-brand-black hover:bg-brand-green hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex items-center justify-center translate-x-[-10px] group-hover:translate-x-0"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          
+          <button
+            onClick={() => scroll("right")}
+            className="absolute right-8 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/90 backdrop-blur-md border border-zinc-200 shadow-xl text-brand-black hover:bg-brand-green hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex items-center justify-center translate-x-[10px] group-hover:translate-x-0"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
+
+          {/* Scroll Container */}
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-12 px-4 md:px-20 no-scrollbar select-none"
+            style={{ 
+              scrollbarWidth: "none", 
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch"
+            }}
+          >
+            <style jsx global>{`
+              .no-scrollbar::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+
+            {images.map((image, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: (index % 4) * 0.05 }}
+                viewport={{ once: true }}
+                className="flex-shrink-0 w-[85vw] md:w-[450px] aspect-[4/5] relative rounded-2xl md:rounded-3xl overflow-hidden group/item snap-center shadow-md bg-zinc-100"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  priority={index < 3}
+                  quality={80}
+                  className="object-cover transition-transform duration-1000 group-hover/item:scale-110"
+                  sizes="(max-width: 768px) 85vw, 450px"
+                />
+                
+                {/* Hover Overlays */}
+                <div className="absolute inset-0 bg-brand-green/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 md:p-10">
+                  <motion.p 
+                    className="text-white text-xs font-semibold tracking-[0.25em] uppercase"
+                  >
+                    Hayat Interiors
+                  </motion.p>
+                  <motion.h3 
+                    className="text-white text-xl md:text-2xl font-serif mt-2"
+                  >
+                    {image.alt}
+                  </motion.h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Mobile Indicator */}
+        <div className="flex justify-center gap-2 mt-4 md:hidden">
+            <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-medium">Swipe to explore</span>
         </div>
       </div>
     </section>
   );
 }
+
