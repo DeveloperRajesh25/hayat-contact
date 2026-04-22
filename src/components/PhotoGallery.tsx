@@ -24,8 +24,19 @@ const images = [
   { src: "/gallery-images/16.JPG", alt: "Modern stairwell architecture" },
   { src: "/gallery-images/17.jpg", alt: "Premium walk-in closet" },
   { src: "/gallery-images/18.jpeg", alt: "Cozy reading nook design" },
+  { src: "/gallery-images/IMG 1.jpeg", alt: "Luxury interior detail" },
+  { src: "/gallery-images/IMG 2.jpeg", alt: "Modern architectural element" },
+  { src: "/gallery-images/img 3.jpeg", alt: "Sophisticated design feature" },
+  { src: "/gallery-images/IMG 4.jpeg", alt: "Premium finish detail" },
+  { src: "/gallery-images/IMG 5.jpeg", alt: "Contemporary living detail" },
+  { src: "/gallery-images/IMG 6.jpeg", alt: "Elegant decor accent" },
+  { src: "/gallery-images/IMG 7.jpeg", alt: "Bespoke interior element" },
+  { src: "/gallery-images/IMG 8.jpeg", alt: "High-end design detail" },
+  { src: "/gallery-images/IMG 9.jpeg", alt: "Curated architectural spot" },
+  { src: "/gallery-images/IMG 10.jpeg", alt: "Luxe material finish" },
+  { src: "/gallery-images/IMG 11.jpeg", alt: "Stylish interior corner" },
+  { src: "/gallery-images/IMG 12.jpeg", alt: "Refined design touch" },
 ];
-
 export default function PhotoGallery() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
@@ -79,7 +90,7 @@ export default function PhotoGallery() {
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
-          
+
           <button
             onClick={() => scroll("right")}
             className="absolute right-8 top-1/2 -translate-y-1/2 z-20 p-4 rounded-full bg-white/90 backdrop-blur-md border border-zinc-200 shadow-xl text-brand-black hover:bg-brand-green hover:text-white transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex items-center justify-center translate-x-[10px] group-hover:translate-x-0"
@@ -92,8 +103,8 @@ export default function PhotoGallery() {
           <div
             ref={scrollContainerRef}
             className="flex gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-12 px-4 md:px-12 no-scrollbar select-none"
-            style={{ 
-              scrollbarWidth: "none", 
+            style={{
+              scrollbarWidth: "none",
               msOverflowStyle: "none",
               WebkitOverflowScrolling: "touch"
             }}
@@ -120,17 +131,17 @@ export default function PhotoGallery() {
                 />
 
 
-                
+
                 {/* Hover Overlays */}
                 <div className="absolute inset-0 bg-brand-green/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 md:p-10">
-                  <motion.p 
+                  <motion.p
                     className="text-white text-xs font-semibold tracking-[0.25em] uppercase"
                   >
                     Hayat Interiors
                   </motion.p>
-                  <motion.h3 
+                  <motion.h3
                     className="text-white text-xl md:text-2xl font-serif mt-2"
                   >
                     {image.alt}
@@ -141,10 +152,10 @@ export default function PhotoGallery() {
           </div>
 
         </div>
-        
+
         {/* Mobile Indicator */}
         <div className="flex justify-center gap-2 mt-4 md:hidden">
-            <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-medium">Swipe to explore</span>
+          <span className="text-[10px] text-zinc-400 uppercase tracking-widest font-medium">Swipe to explore</span>
         </div>
       </div>
     </section>

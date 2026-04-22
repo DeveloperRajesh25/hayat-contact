@@ -44,6 +44,11 @@ export default function FinalCTA() {
               <form 
                 onSubmit={async (e) => {
                   e.preventDefault();
+                  if (phone.length !== 10) {
+                    alert("Please enter a valid 10-digit phone number.");
+                    return;
+                  }
+
                   setIsSubmitting(true);
 
                   try {
@@ -51,7 +56,7 @@ export default function FinalCTA() {
                     
                     const params = new URLSearchParams();
                     params.append("fullName", name);
-                    params.append("phone", phone);
+                    params.append("phone", "+91 " + phone);
                     params.append("source", "Direct CTA (Bottom Form)");
                     params.append("propertyType", "Not Specified");
                     params.append("budget", "Not Specified");
@@ -61,10 +66,8 @@ export default function FinalCTA() {
                     await fetch(SCRIPT_URL, {
                       method: "POST",
                       mode: "no-cors",
-                      headers: {
-                        "Content-Type": "application/x-www-form-urlencoded",
-                      },
-                      body: params.toString(),
+                      cache: "no-cache",
+                      body: params,
                     });
                   } catch (error) {
                     console.error("Tracking error:", error);
@@ -93,7 +96,10 @@ Please get back to me.`;
                   placeholder="Your Name"
                   className="flex-1 bg-transparent px-6 py-5 outline-none text-brand-black font-sans text-sm font-light border-b md:border-b-0 md:border-r border-zinc-100 placeholder:text-zinc-300"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+                    setName(value);
+                  }}
                 />
                 <input
                   required
@@ -101,7 +107,12 @@ Please get back to me.`;
                   placeholder="Phone Number"
                   className="flex-1 bg-transparent px-6 py-5 outline-none text-brand-black font-sans text-sm font-light placeholder:text-zinc-300"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+                    setPhone(value);
+                  }}
+                  pattern="[6-9][0-9]{9}"
+                  title="Please enter a valid 10-digit phone number"
                 />
                 <button
                   type="submit"

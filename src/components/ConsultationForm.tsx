@@ -76,6 +76,17 @@ export default function ConsultationForm() {
       return;
     }
 
+    if (formData.phone.length !== 10) {
+      alert("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -85,9 +96,10 @@ export default function ConsultationForm() {
       // and to ensure simple request (no preflight) in no-cors mode
       const params = new URLSearchParams();
       params.append("fullName", formData.fullName);
-      params.append("phone", formData.phone);
+      params.append("phone", "+91 " + formData.phone);
       params.append("email", formData.email);
       params.append("city", formData.city);
+      params.append("location", formData.city);
       params.append("propertyType", formData.propertyType);
       params.append("budget", formData.budget);
       params.append("source", formData.source);
@@ -97,10 +109,8 @@ export default function ConsultationForm() {
       await fetch(SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: params.toString(),
+        cache: "no-cache",
+        body: params,
       });
 
       // Since mode is 'no-cors' we assume success if no fetch error
@@ -189,8 +199,11 @@ export default function ConsultationForm() {
                             placeholder="e.g. Rahul Sharma"
                             className="w-full bg-transparent border-b border-zinc-200 py-3 outline-none focus:border-brand-green transition-colors font-sans text-sm text-brand-black placeholder:text-zinc-300"
                             value={formData.fullName}
-                            onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                          />
+                             onChange={(e) => {
+                                const value = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+                                setFormData({ ...formData, fullName: value });
+                              }}
+                            />
                         </div>
                         <div>
                           <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">Phone Number *</label>
@@ -202,7 +215,12 @@ export default function ConsultationForm() {
                               placeholder="99999 99999"
                               className="w-full bg-transparent py-3 outline-none font-sans text-sm text-brand-black placeholder:text-zinc-300"
                               value={formData.phone}
-                              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                              onChange={(e) => {
+                                const value = e.target.value.replace(/\D/g, "").slice(0, 10);
+                                setFormData({ ...formData, phone: value });
+                              }}
+                              pattern="[6-9][0-9]{9}"
+                              title="Please enter a valid 10-digit Indian phone number"
                             />
                           </div>
                         </div>
