@@ -11,14 +11,16 @@ export default function Footer() {
           {/* Logo & Tagline */}
           <div className="space-y-6 text-center md:text-left md:col-span-2 pr-0 md:pr-12 md:border-r border-zinc-100/50">
           <div className="flex-shrink-0 flex justify-center md:justify-start">
-            <Image
-              src="/white-font-logo.png"
-              alt="Hayat Interiors"
-              width={180}
-              height={45}
-              className="h-10 w-auto brightness-0 invert"
-              priority
-            />
+            <div className="bg-gray-400 px-6 py-4 rounded-xl inline-block">
+              <Image
+                src="/white-font-logo.png"
+                alt="Hayat Interiors"
+                width={180}
+                height={45}
+                className="h-10 w-auto"
+                priority
+              />
+            </div>
           </div>
             <p className="font-sans text-[10px] text-zinc-400 uppercase tracking-[0.3em] leading-loose">
               Contemporary living and heritage-inspired <br className="hidden lg:block" /> interior design with exceptional craftsmanship
