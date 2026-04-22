@@ -91,7 +91,7 @@ export default function PhotoGallery() {
           {/* Scroll Container */}
           <div
             ref={scrollContainerRef}
-            className="flex gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-12 px-4 md:px-20 no-scrollbar select-none"
+            className="flex gap-4 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-12 px-4 md:px-12 no-scrollbar select-none"
             style={{ 
               scrollbarWidth: "none", 
               msOverflowStyle: "none",
@@ -105,13 +105,9 @@ export default function PhotoGallery() {
             `}</style>
 
             {images.map((image, index) => (
-              <motion.div
+              <div
                 key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: (index % 4) * 0.05 }}
-                viewport={{ once: true }}
-                className="flex-shrink-0 w-[85vw] md:w-[450px] aspect-[4/5] relative rounded-2xl md:rounded-3xl overflow-hidden group/item snap-center shadow-md bg-zinc-100"
+                className="flex-shrink-0 w-[80vw] md:w-[60vw] lg:w-[45vw] aspect-[4/5] relative rounded-2xl md:rounded-3xl overflow-hidden group/item snap-center shadow-md bg-zinc-100"
               >
                 <Image
                   src={image.src}
@@ -120,8 +116,10 @@ export default function PhotoGallery() {
                   priority={index < 3}
                   quality={80}
                   className="object-cover transition-transform duration-1000 group-hover/item:scale-110"
-                  sizes="(max-width: 768px) 85vw, 450px"
+                  sizes="(max-width: 768px) 80vw, (max-width: 1024px) 60vw, 45vw"
                 />
+
+
                 
                 {/* Hover Overlays */}
                 <div className="absolute inset-0 bg-brand-green/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -138,9 +136,10 @@ export default function PhotoGallery() {
                     {image.alt}
                   </motion.h3>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
+
         </div>
         
         {/* Mobile Indicator */}

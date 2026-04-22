@@ -27,31 +27,47 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const duplicatedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials];
+
   return (
     <section className="py-12 md:py-24 bg-[#F5F0EB] overflow-hidden">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center mb-12 md:mb-20">
+      <div className="container mx-auto px-4 max-w-7xl mb-12 md:mb-20">
+        <div className="text-center">
           <p className="text-[10px] text-brand-green uppercase tracking-[0.3em] font-medium mb-4">Client Expressions</p>
           <h2 className="font-serif text-3xl sm:text-5xl font-light text-brand-black mb-4">What Our Clients Say</h2>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((t, i) => (
-            <motion.a 
+      <div className="relative flex overflow-hidden">
+        {/* Gradient Overlays for smooth edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-r from-[#F5F0EB] to-transparent z-10" />
+        <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-[#F5F0EB] to-transparent z-10" />
+
+        <motion.div 
+          className="flex gap-6 md:gap-8 hover:pause-marquee"
+          animate={{
+            x: ["0%", "-50%"],
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 40,
+              ease: "linear",
+            },
+          }}
+        >
+          {duplicatedTestimonials.map((t, i) => (
+            <div 
               key={i} 
-              href="#consultation-form"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              className="bg-white p-8 border border-zinc-100 group transition-all duration-300 hover:border-brand-green/30 hover:shadow-xl hover:shadow-black/[0.02] cursor-pointer block"
+              className="bg-white p-8 md:p-10 border border-zinc-100 w-[300px] md:w-[450px] flex-shrink-0 group transition-all duration-300 hover:border-brand-green/30 hover:shadow-xl hover:shadow-black/[0.02]"
             >
               <div className="flex gap-2 mb-8">
                 {[...Array(t.stars)].map((_, j) => (
                   <span key={j} className="text-brand-green text-xs">✦</span>
                 ))}
               </div>
-              <p className="font-sans font-light text-zinc-500 leading-relaxed mb-10 italic">
+              <p className="font-sans font-light text-zinc-500 leading-relaxed mb-10 italic text-sm md:text-base whitespace-normal">
                 "{t.quote}"
               </p>
               <div className="border-t border-zinc-100 pt-6 mt-auto">
@@ -60,10 +76,17 @@ export default function Testimonials() {
                   {t.area} <span className="mx-1 text-zinc-200">|</span> {t.property}
                 </div>
               </div>
-            </motion.a>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
+      
+      <style jsx>{`
+        .hover\:pause-marquee:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
     </section>
   );
 }
+
