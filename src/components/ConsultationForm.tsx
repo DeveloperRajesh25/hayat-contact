@@ -79,20 +79,31 @@ export default function ConsultationForm() {
     setIsSubmitting(true);
 
     try {
-      // Replace this URL with your Google Apps Script Web App URL
       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzT9RgKCeuKbvHIACe0XZMJ5Y5WGf60qVP12d6aTzjYjgqqt-twupFzTHWBmwmOgkOiNg/exec";
       
-      const response = await fetch(SCRIPT_URL, {
+      // Use URLSearchParams for better compatibility with Google Apps Script (e.parameter)
+      // and to ensure simple request (no preflight) in no-cors mode
+      const params = new URLSearchParams();
+      params.append("fullName", formData.fullName);
+      params.append("phone", formData.phone);
+      params.append("email", formData.email);
+      params.append("city", formData.city);
+      params.append("propertyType", formData.propertyType);
+      params.append("budget", formData.budget);
+      params.append("source", formData.source);
+      params.append("message", formData.message || "Consultation Request");
+      params.append("timestamp", new Date().toLocaleString());
+
+      await fetch(SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors", // Required for Google Apps Script
+        mode: "no-cors",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify(formData),
+        body: params.toString(),
       });
 
-      // Since mode is 'no-cors', we can't read the response object, 
-      // but we can assume success if no error was thrown during fetch
+      // Since mode is 'no-cors' we assume success if no fetch error
       setSubmitted(true);
     } catch (error) {
       console.error("Submission error:", error);

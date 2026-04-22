@@ -8,6 +8,7 @@ export default function FinalCTA() {
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
   return (
@@ -41,8 +42,36 @@ export default function FinalCTA() {
               className="flex flex-col items-center gap-12"
             >
               <form 
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
+                  setIsSubmitting(true);
+
+                  try {
+                    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzT9RgKCeuKbvHIACe0XZMJ5Y5WGf60qVP12d6aTzjYjgqqt-twupFzTHWBmwmOgkOiNg/exec";
+                    
+                    const params = new URLSearchParams();
+                    params.append("fullName", name);
+                    params.append("phone", phone);
+                    params.append("source", "Direct CTA (Bottom Form)");
+                    params.append("propertyType", "Not Specified");
+                    params.append("budget", "Not Specified");
+                    params.append("message", "Interested in consultation (via WhatsApp CTA)");
+                    params.append("timestamp", new Date().toLocaleString());
+
+                    await fetch(SCRIPT_URL, {
+                      method: "POST",
+                      mode: "no-cors",
+                      headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                      },
+                      body: params.toString(),
+                    });
+                  } catch (error) {
+                    console.error("Tracking error:", error);
+                  } finally {
+                    setIsSubmitting(false);
+                  }
+
                   const message = `Hello Hayat Interiors, I'm interested in a consultation.
 
 *Details:*
@@ -76,9 +105,12 @@ Please get back to me.`;
                 />
                 <button
                   type="submit"
-                  className="group relative flex items-center justify-center overflow-hidden bg-brand-green px-12 py-5 font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-white transition-all"
+                  disabled={isSubmitting}
+                  className="group relative flex items-center justify-center overflow-hidden bg-brand-green px-12 py-5 font-sans text-[10px] uppercase tracking-[0.2em] font-bold text-white transition-all disabled:opacity-70"
                 >
-                  <span className="relative z-10 transition-transform group-hover:-translate-y-0.5 group-hover:text-white">Book Now</span>
+                  <span className="relative z-10 transition-transform group-hover:-translate-y-0.5 group-hover:text-white">
+                    {isSubmitting ? "Processing..." : "Book Now"}
+                  </span>
                   <div className="absolute inset-0 z-0 h-full w-0 bg-brand-black transition-all duration-500 ease-out group-hover:w-full"></div>
                 </button>
               </form>
