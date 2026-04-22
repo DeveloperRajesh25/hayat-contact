@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 export default function Footer() {
   return (
     <footer className="bg-white text-brand-black pt-16 md:pt-24 pb-12 md:pb-20 border-t border-zinc-100">
@@ -8,9 +10,16 @@ export default function Footer() {
 
           {/* Logo & Tagline */}
           <div className="space-y-6 text-center md:text-left md:col-span-2 pr-0 md:pr-12 md:border-r border-zinc-100/50">
-            <div className="font-serif text-3xl font-light tracking-wide text-brand-black uppercase">
-              Hayat <span className="text-brand-green italic">Interiors</span>
-            </div>
+          <div className="flex-shrink-0 flex justify-center md:justify-start">
+            <Image
+              src="/white-font-logo.png"
+              alt="Hayat Interiors"
+              width={180}
+              height={45}
+              className="h-10 w-auto brightness-0 invert"
+              priority
+            />
+          </div>
             <p className="font-sans text-[10px] text-zinc-400 uppercase tracking-[0.3em] leading-loose">
               Contemporary living and heritage-inspired <br className="hidden lg:block" /> interior design with exceptional craftsmanship
             </p>
@@ -28,8 +37,8 @@ export default function Footer() {
           <div className="flex flex-col items-center md:items-start space-y-4 text-xs font-sans text-zinc-500 font-light">
             <h4 className="text-zinc-900 font-medium uppercase tracking-[0.2em] text-[10px] mb-4">Explore</h4>
             <a href="https://www.hayatinteriors.com" className="hover:text-brand-green transition-colors">Home</a>
-            <a href="https://www.hayatinteriors.com/our-projects" className="hover:text-brand-green transition-colors">Portfolio</a>
-            <a href="https://www.hayatinteriors.com/about" className="hover:text-brand-green transition-colors">Philosophy</a>
+            <a href="#gallery" className="hover:text-brand-green transition-colors">Portfolio</a>
+            <a href="#why-choose" className="hover:text-brand-green transition-colors">About</a>
             <a href="#consultation-form" className="hover:text-brand-green transition-colors text-brand-green">Book Consultation</a>
           </div>
 
@@ -46,11 +55,11 @@ export default function Footer() {
 
             <div className="flex gap-4 pt-4">
               <a href="https://instagram.com/hayatinteriors.co" target="_blank" className="hover:text-brand-green transition-colors">Instagram</a>
-              <a href="https://threads.net/@hayatinteriors.co" target="_blank" className="hover:text-brand-green transition-colors">Threads</a>
+              <a href="https://linkedin.com/company/hayat-interiors" target="_blank" className="hover:text-brand-green transition-colors">LinkedIn</a>
             </div>
             <a
               href="https://wa.me/919886276722"
-              className="mt-2 inline-block border-b border-brand-green/20 pb-0.5 text-brand-green hover:border-brand-green transition-colors"
+              className="mt-2 inline-flex items-center gap-2 border-b border-[#25D366]/20 pb-0.5 text-[#25D366] hover:border-[#25D366] transition-colors"
             >
               Message via WhatsApp
             </a>

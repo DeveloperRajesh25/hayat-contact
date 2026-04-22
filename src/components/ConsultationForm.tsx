@@ -21,7 +21,6 @@ export default function ConsultationForm() {
     city: "",
     propertyType: "",
     budget: "",
-    selectedNeeds: [] as string[],
     source: "",
     message: "",
   });
@@ -72,7 +71,7 @@ export default function ConsultationForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.fullName || !formData.phone || !formData.email || !formData.city || !formData.propertyType || !formData.budget || formData.selectedNeeds.length === 0 || !formData.source) {
+    if (!formData.fullName || !formData.phone || !formData.email || !formData.city || !formData.propertyType || !formData.budget || !formData.source) {
       alert("Please fill all required fields.");
       return;
     }
@@ -103,14 +102,7 @@ export default function ConsultationForm() {
     }
   };
 
-  const toggleNeed = (need: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      selectedNeeds: prev.selectedNeeds.includes(need)
-        ? prev.selectedNeeds.filter((n) => n !== need)
-        : [...prev.selectedNeeds, need],
-    }));
-  };
+
 
   return (
     <AnimatePresence>
@@ -257,25 +249,7 @@ export default function ConsultationForm() {
                         </div>
                       </div>
 
-                      <div>
-                        <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-4 font-medium">Areas of Interest *</label>
-                        <div className="flex flex-wrap gap-2.5">
-                          {needs.map((need) => (
-                            <button
-                              key={need}
-                              type="button"
-                              onClick={() => toggleNeed(need)}
-                              className={`px-5 py-2 rounded-none text-[11px] uppercase tracking-wide font-medium border transition-all duration-300 ${
-                                formData.selectedNeeds.includes(need)
-                                  ? "bg-brand-green border-brand-green text-white"
-                                  : "bg-white border-zinc-200 text-zinc-400 hover:border-brand-green/50 hover:text-brand-black"
-                              }`}
-                            >
-                              {need}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
+
 
                       <div>
                         <label className="block text-[10px] uppercase tracking-[0.2em] text-zinc-400 mb-3 font-medium">How did you find us? *</label>

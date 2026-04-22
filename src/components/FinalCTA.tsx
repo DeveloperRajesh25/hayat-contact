@@ -93,7 +93,7 @@ Please get back to me.`;
                   href="https://wa.me/919886276722"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 border border-zinc-200 bg-white text-zinc-600 font-sans text-[11px] uppercase tracking-widest px-8 py-4 hover:bg-zinc-50 hover:border-brand-green transition-all"
+                  className="flex items-center gap-3 border border-zinc-200 bg-white text-[#25D366] font-sans text-[11px] uppercase tracking-widest px-8 py-4 hover:bg-zinc-50 hover:border-[#25D366] transition-all"
                 >
                   <span className="">WhatsApp Us</span>
                 </a>

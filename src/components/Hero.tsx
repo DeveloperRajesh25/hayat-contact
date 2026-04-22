@@ -61,8 +61,8 @@ export default function Hero() {
         
 
           <h1 className="mb-8 font-serif text-5xl font-light leading-[1.1] text-white drop-shadow-2xl md:text-8xl lg:text-9xl">
-            Contemporary <br />
-            <span className="italic text-brand-green">Luxury</span>
+            The Art of <br />
+            <span className="italic text-brand-green text-3xl md:text-5xl lg:text-6xl block mt-4">Stunning Interior Design</span>
           </h1>
 
           <p className="mb-12 max-w-2xl text-sm font-light leading-relaxed text-white/80 sm:text-lg">
