@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const propertyTypes = ["2BHK Apartment", "3BHK Apartment", "4BHK", "Villa", "Office", "Others"];
 const budgets = ["₹7–10 Lakhs", "₹10–20 Lakhs", "₹20–50 Lakhs", "₹50 Lakhs+"];
@@ -10,8 +11,8 @@ const needs = ["Full Home Interior"];
 
 export default function ConsultationForm() {
   const [isOpen, setIsOpen] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
   const hasAggressivelyOpened = useRef(false);
 
   const [formData, setFormData] = useState({
@@ -135,8 +136,9 @@ export default function ConsultationForm() {
         body: JSON.stringify(payload),
       });
 
-      // Since mode is 'no-cors' we assume success if no fetch error
-      setSubmitted(true);
+      // Navigate to the thank you page for conversion tracking
+      setIsOpen(false);
+      router.push('/thank-you');
     } catch (error) {
       console.error("Submission error:", error);
       alert("There was an error submitting the form. Please try again or contact us directly.");
@@ -177,32 +179,6 @@ export default function ConsultationForm() {
 
             <div className="flex-1 overflow-y-auto w-full hide-scrollbar p-6 sm:p-10">
               <AnimatePresence mode="wait">
-                {submitted ? (
-                  <motion.div 
-                    key="success"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="py-20 text-center flex flex-col items-center justify-center h-full"
-                  >
-                    <div className="w-20 h-20 bg-brand-green/10 border border-brand-green/30 text-brand-green rounded-full flex items-center justify-center mx-auto mb-8">
-                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <h2 className="font-serif text-3xl font-light text-brand-black mb-4">Consultation Requested</h2>
-                    <p className="text-zinc-500 font-sans font-light leading-relaxed mb-10 max-w-sm mx-auto">
-                      Thank you for trusting Hayat Interiors. One of our lead designers will contact you within 2 hours.
-                    </p>
-                    <button 
-                      onClick={() => setIsOpen(false)}
-                      className="text-[10px] uppercase tracking-[0.2em] text-brand-green hover:text-brand-black transition-colors border-b border-brand-green/30 pb-1"
-                    >
-                      Return to Website
-                    </button>
-                  </motion.div>
-                ) : (
                   <motion.div key="form-content" className="flex flex-col gap-8">
                     <div className="text-center md:text-left mb-1">
                        <p className="text-[10px] text-brand-green uppercase tracking-[0.3em] mb-2 font-medium">Initial Consultation</p>
@@ -333,7 +309,6 @@ export default function ConsultationForm() {
                       </p>
                     </form>
                   </motion.div>
-                )}
               </AnimatePresence>
             </div>
           </motion.div>
