@@ -52,14 +52,34 @@ export default function ConsultationForm() {
       // only trigger if they clicked on bg or non-interactive elements, OR trigger on anything?
       // "Whenver user clicks anywhere then it should open that popup"
       if (!hasAggressivelyOpened.current) {
-         hasAggressivelyOpened.current = true;
-         // delay slightly so the click doesn't immediately dismiss or feel glitchy
-         setTimeout(() => setIsOpen(true), 100);
+         const hasSeenPopup = sessionStorage.getItem("hasSeenConsultationPopup");
+         if (!hasSeenPopup) {
+           hasAggressivelyOpened.current = true;
+           sessionStorage.setItem("hasSeenConsultationPopup", "true");
+           // delay slightly so the click doesn't immediately dismiss or feel glitchy
+           setTimeout(() => setIsOpen(true), 100);
+         } else {
+           hasAggressivelyOpened.current = true;
+         }
       }
     };
 
     document.addEventListener("click", handleGlobalClick);
     return () => document.removeEventListener("click", handleGlobalClick);
+  }, []);
+
+  // Auto-open after 4 seconds on initial visit
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const hasSeenPopup = sessionStorage.getItem("hasSeenConsultationPopup");
+      if (!hasSeenPopup && !hasAggressivelyOpened.current) {
+        hasAggressivelyOpened.current = true;
+        setIsOpen(true);
+        sessionStorage.setItem("hasSeenConsultationPopup", "true");
+      }
+    }, 4000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   // Also open if URL hash is already there on mount

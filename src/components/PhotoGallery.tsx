@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, X, Maximize2 } from "lucide-react";
 
 const images = [
   { src: "/gallery-images/1.JPG", alt: "Luxury residence interior design" },
@@ -24,6 +24,7 @@ const images = [
   { src: "/gallery-images/16.JPG", alt: "Modern stairwell architecture" },
   { src: "/gallery-images/17.jpg", alt: "Premium walk-in closet" },
   { src: "/gallery-images/18.jpeg", alt: "Cozy reading nook design" },
+  {src:"/gallery-images/20.jpeg",alt:"modern bedroom interior"},
   { src: "/gallery-images/IMG 1.jpeg", alt: "Luxury interior detail" },
   { src: "/gallery-images/IMG 2.jpeg", alt: "Modern architectural element" },
   { src: "/gallery-images/img 3.jpeg", alt: "Sophisticated design feature" },
@@ -39,6 +40,29 @@ const images = [
 ];
 export default function PhotoGallery() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+
+  const openLightbox = (index: number) => {
+    setSelectedImageIndex(index);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeLightbox = () => {
+    setSelectedImageIndex(null);
+    document.body.style.overflow = "unset";
+  };
+
+  const nextImage = () => {
+    if (selectedImageIndex !== null) {
+      setSelectedImageIndex((selectedImageIndex + 1) % images.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedImageIndex !== null) {
+      setSelectedImageIndex((selectedImageIndex - 1 + images.length) % images.length);
+    }
+  };
 
   const scroll = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -130,26 +154,114 @@ export default function PhotoGallery() {
                   sizes="(max-width: 768px) 80vw, (max-width: 1024px) 60vw, 45vw"
                 />
 
+                {/* Click area for opening lightbox */}
+                <button 
+                  onClick={() => openLightbox(index)}
+                  className="absolute inset-0 z-10 w-full h-full cursor-zoom-in"
+                  aria-label={`View ${image.alt} in full screen`}
+                />
+
 
 
                 {/* Hover Overlays */}
                 <div className="absolute inset-0 bg-brand-green/20 opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 md:p-10">
-                  <motion.p
-                    className="text-white text-xs font-semibold tracking-[0.25em] uppercase"
-                  >
-                    Hayat Interiors
-                  </motion.p>
-                  <motion.h3
-                    className="text-white text-xl md:text-2xl font-serif mt-2"
-                  >
-                    {image.alt}
-                  </motion.h3>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 md:p-10 pointer-events-none">
+                  <div className="flex justify-between items-end">
+                    <div>
+                      <motion.p
+                        className="text-white text-xs font-semibold tracking-[0.25em] uppercase"
+                      >
+                        Hayat Interiors
+                      </motion.p>
+                      <motion.h3
+                        className="text-white text-xl md:text-2xl font-serif mt-2"
+                      >
+                        {image.alt}
+                      </motion.h3>
+                    </div>
+                    <div className="bg-white/20 backdrop-blur-md p-3 rounded-full text-white">
+                      <Maximize2 className="w-5 h-5" />
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Lightbox Modal */}
+          <AnimatePresence>
+            {selectedImageIndex !== null && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 md:p-10"
+                onClick={closeLightbox}
+              >
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="absolute top-6 right-6 z-[110] p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    closeLightbox();
+                  }}
+                >
+                  <X className="w-6 h-6" />
+                </motion.button>
+
+                <button
+                  className="absolute left-4 md:left-10 top-1/2 -translate-y-1/2 z-[110] p-4 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors hidden md:flex"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    prevImage();
+                  }}
+                >
+                  <ChevronLeft className="w-8 h-8" />
+                </button>
+
+                <button
+                  className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 z-[110] p-4 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors hidden md:flex"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    nextImage();
+                  }}
+                >
+                  <ChevronRight className="w-8 h-8" />
+                </button>
+
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.9, opacity: 0 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                  className="relative w-full h-full flex items-center justify-center pointer-events-none"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="relative w-full max-w-5xl h-full max-h-[85vh] pointer-events-auto">
+                    <Image
+                      src={images[selectedImageIndex].src}
+                      alt={images[selectedImageIndex].alt}
+                      fill
+                      className="object-contain"
+                      quality={100}
+                      priority
+                    />
+                  </div>
+                  
+                  <div className="absolute bottom-0 left-0 right-0 text-center p-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-auto">
+                    <p className="text-zinc-400 text-xs font-semibold tracking-[0.3em] uppercase mb-2">
+                      Project {selectedImageIndex + 1} / {images.length}
+                    </p>
+                    <h3 className="text-white text-xl md:text-3xl font-serif">
+                      {images[selectedImageIndex].alt}
+                    </h3>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
         </div>
 
