@@ -54,20 +54,23 @@ export default function FinalCTA() {
                   try {
                     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzT9RgKCeuKbvHIACe0XZMJ5Y5WGf60qVP12d6aTzjYjgqqt-twupFzTHWBmwmOgkOiNg/exec";
                     
-                    const params = new URLSearchParams();
-                    params.append("fullName", name);
-                    params.append("phone", "+91 " + phone);
-                    params.append("source", "Direct CTA (Bottom Form)");
-                    params.append("propertyType", "Not Specified");
-                    params.append("budget", "Not Specified");
-                    params.append("message", "Interested in consultation (via WhatsApp CTA)");
-                    params.append("timestamp", new Date().toLocaleString());
+                    const payload = {
+                      fullName: name,
+                      phone: phone,
+                      source: "Direct CTA (Bottom Form)",
+                      propertyType: "Not Specified",
+                      budget: "Not Specified",
+                      message: "Interested in consultation (via WhatsApp CTA)",
+                      timestamp: new Date().toLocaleString()
+                    };
 
                     await fetch(SCRIPT_URL, {
                       method: "POST",
                       mode: "no-cors",
-                      cache: "no-cache",
-                      body: params,
+                      headers: {
+                        "Content-Type": "text/plain;charset=utf-8",
+                      },
+                      body: JSON.stringify(payload),
                     });
                   } catch (error) {
                     console.error("Tracking error:", error);

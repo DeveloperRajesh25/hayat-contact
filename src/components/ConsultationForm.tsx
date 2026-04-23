@@ -92,25 +92,27 @@ export default function ConsultationForm() {
     try {
       const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzT9RgKCeuKbvHIACe0XZMJ5Y5WGf60qVP12d6aTzjYjgqqt-twupFzTHWBmwmOgkOiNg/exec";
       
-      // Use URLSearchParams for better compatibility with Google Apps Script (e.parameter)
-      // and to ensure simple request (no preflight) in no-cors mode
-      const params = new URLSearchParams();
-      params.append("fullName", formData.fullName);
-      params.append("phone", "+91 " + formData.phone);
-      params.append("email", formData.email);
-      params.append("city", formData.city);
-      params.append("location", formData.city);
-      params.append("propertyType", formData.propertyType);
-      params.append("budget", formData.budget);
-      params.append("source", formData.source);
-      params.append("message", formData.message || "Consultation Request");
-      params.append("timestamp", new Date().toLocaleString());
+      const payload = {
+        fullName: formData.fullName,
+        phone: formData.phone, // keeping exactly as it was originally
+        email: formData.email,
+        city: formData.city,
+        location: formData.city, 
+        propertyType: formData.propertyType,
+        budget: formData.budget,
+        areasOfInterest: "Full Home Interior", // added as fallback
+        source: formData.source,
+        message: formData.message || "Consultation Request",
+        timestamp: new Date().toLocaleString()
+      };
 
       await fetch(SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors",
-        cache: "no-cache",
-        body: params,
+        mode: "no-cors", // Required for Google Apps Script
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8", // text/plain to avoid preflight issues while passing JSON
+        },
+        body: JSON.stringify(payload),
       });
 
       // Since mode is 'no-cors' we assume success if no fetch error
