@@ -127,16 +127,24 @@ export default function ConsultationForm() {
         timestamp: new Date().toLocaleString()
       };
 
-      await fetch(SCRIPT_URL, {
+      const response = await fetch(SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors", // Required for Google Apps Script
         headers: {
-          "Content-Type": "text/plain;charset=utf-8", // text/plain to avoid preflight issues while passing JSON
+          "Content-Type": "text/plain;charset=utf-8", // text/plain to avoid CORS preflight while passing JSON
         },
         body: JSON.stringify(payload),
       });
 
-      // Navigate to the thank you page for conversion tracking
+      if (!response.ok) {
+        throw new Error(`Submission failed with status ${response.status}`);
+      }
+
+      const result = await response.json().catch(() => null);
+      if (result && result.status === "error") {
+        throw new Error(result.message || "Submission failed");
+      }
+
+      // Navigate to the thank you page only after a confirmed successful submission
       setIsOpen(false);
       router.push('/thank-you');
     } catch (error) {
