@@ -1,16 +1,20 @@
 import StickyTopBar from "@/components/StickyTopBar";
 import Hero from "@/components/Hero";
 import OfferStrip from "@/components/OfferStrip";
+import InlineConsultationForm from "@/components/InlineConsultationForm";
 import ConsultationForm from "@/components/ConsultationForm";
-import ServicesSection from "@/components/ServicesSection";
+import OverviewSection from "@/components/OverviewSection";
+import VideoPortfolio from "@/components/VideoPortfolio";
 import WhyChooseSection from "@/components/WhyChooseSection";
-
+import WhatWeOffer from "@/components/WhatWeOffer";
+import OurProcess from "@/components/OurProcess";
+import TrustedPartners from "@/components/TrustedPartners";
+import PhotoGallery from "@/components/PhotoGallery";
 import Testimonials from "@/components/Testimonials";
-import CinematicShowcase from "@/components/CinematicShowcase";
+import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import StickyBottomMobile from "@/components/StickyBottomMobile";
-import PhotoGallery from "@/components/PhotoGallery";
 
 export default function Home() {
   return (
@@ -19,14 +23,17 @@ export default function Home() {
       <Hero />
       <OfferStrip />
       <div id="consultation-form-top" />
+      <InlineConsultationForm />
       <ConsultationForm />
-      <ServicesSection />
+      <OverviewSection />
+      <VideoPortfolio />
       <WhyChooseSection />
-      
-      <CinematicShowcase />
+      <WhatWeOffer />
+      <OurProcess />
       <PhotoGallery />
-
+      <TrustedPartners />
       <Testimonials />
+      <FAQ />
       <FinalCTA />
       <Footer />
       <StickyBottomMobile />

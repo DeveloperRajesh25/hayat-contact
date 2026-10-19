@@ -14,8 +14,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Hayat Interiors | Contemporary Living & Heritage-Inspired Interior Design",
-  description: "Bespoke interior design studio in Bengaluru specializing in contemporary luxury and heritage craftsmanship. Located near Manyata Tech Park. Book your free consultation today!",
+  title: "Premium Home Interior Designers in Bangalore | Hayat Interiors",
+  description: "Personalised interiors for apartments and villas in Bangalore. End-to-end interior design from concept to handover. Modular kitchens, wardrobes, living rooms & more. Book your free consultation today!",
+  keywords: "interior designers in bangalore, home interior designers in bangalore, interior design company in bangalore, interior design services in bangalore, interior design services, interior designers near me, home interior designer near me, interior design company near me, interior designers in my area, interior design near me, apartment interior design, luxury interiors bangalore, premium interior designers in bangalore, modular kitchen bangalore, modular kitchen design bangalore, kitchen interior design bangalore, kitchen interior designers in bangalore, kitchen interior design cost bangalore, modular kitchen interior design",
   robots: {
     index: true,
     follow: true,
@@ -29,25 +30,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable} scroll-smooth`}>
-      <body className="antialiased">
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-KNW9F9GG"
-            height="0"
-            width="0"
-            style={{ display: 'none', visibility: 'hidden' }}
-          />
-        </noscript>
-
-        {/* Google Tag Manager Script */}
+      <head>
+        {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KNW9F9GG');`}
+})(window,document,'script','dataLayer','GTM-5QX3WK9R');`}
         </Script>
+      </head>
+      <body className="antialiased">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5QX3WK9R"
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
 
         {/* Google tag (gtag.js) */}
         <Script
