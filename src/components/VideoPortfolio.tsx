@@ -17,7 +17,7 @@ export default function VideoPortfolio() {
     <section className="py-16 md:py-24 bg-zinc-50 overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl mb-12">
         <div className="text-center">
-          <p className="text-[10px] text-brand-green uppercase tracking-[0.3em] font-medium mb-4">Portfolio</p>
+          <p className="text-sm sm:text-base text-brand-green uppercase tracking-[0.3em] pl-[0.3em] font-semibold mb-3">Portfolio</p>
           <h2 className="font-serif text-3xl sm:text-5xl font-light text-brand-black mb-4">See Our Work In Action</h2>
         </div>
       </div>
@@ -27,13 +27,13 @@ export default function VideoPortfolio() {
         <div className="absolute right-0 top-0 bottom-0 w-12 md:w-24 bg-gradient-to-l from-zinc-50 to-transparent z-10" />
 
         <motion.div
-          className="flex gap-6"
-          animate={{ x: ["0%", "-33.33%"] }}
+          className="flex w-max"
+          animate={{ x: ["0%", "-33.333333%"] }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 60,
+              duration: 15,
               ease: "linear",
             },
           }}
@@ -41,7 +41,7 @@ export default function VideoPortfolio() {
           {duplicated.map((v, i) => (
             <div
               key={i}
-              className="flex-shrink-0 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[32vw]"
+              className="shrink-0 mr-6 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[32vw]"
             >
               <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg bg-black">
                 <iframe

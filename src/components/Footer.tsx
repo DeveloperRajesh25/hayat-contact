@@ -1,77 +1,47 @@
-"use client";
-
 import Image from "next/image";
+import { Phone, Mail } from "lucide-react";
+
+const iconLink =
+  "flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-brand-green";
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-brand-black pt-16 md:pt-24 pb-12 md:pb-20 border-t border-zinc-100">
+    <footer className="bg-brand-black text-white pt-6 pb-20 md:py-8">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 md:mb-20 border-b border-zinc-100 pb-12 md:pb-20">
+        <div className="flex flex-col items-center gap-4 md:flex-row md:justify-between">
+          <Image
+            src="/white-font-logo.png"
+            alt="Hayat Interiors"
+            width={140}
+            height={35}
+            className="h-8 w-auto"
+          />
 
-          {/* Logo & Tagline */}
-          <div className="space-y-6 text-center md:text-left md:col-span-2 pr-0 md:pr-12 md:border-r border-zinc-100/50">
-          <div className="flex-shrink-0 flex justify-center md:justify-start">
-            <div className="bg-gray-400 px-6 py-4 rounded-xl inline-block">
-              <Image
-                src="/white-font-logo.png"
-                alt="Hayat Interiors"
-                width={180}
-                height={45}
-                className="h-10 w-auto"
-                priority
-              />
-            </div>
-          </div>
-            <p className="font-sans text-[10px] text-zinc-400 uppercase tracking-[0.3em] leading-loose">
-              Contemporary living and heritage-inspired <br className="hidden lg:block" /> interior design with exceptional craftsmanship
-            </p>
-            <div className="pt-8 space-y-4">
-              <h4 className="text-zinc-900 font-medium uppercase tracking-[0.2em] text-[10px]">Office Hours</h4>
-              <div className="text-[10px] text-zinc-500 space-y-1 font-light uppercase tracking-wider">
-                <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
-                <p>Saturday: 10:00 AM - 6:00 PM</p>
-                <p>Sunday: Closed <span className="text-zinc-400 italic font-sans">(Emergency support available)</span></p>
-              </div>
-            </div>
+          <nav className="hidden md:flex items-center gap-5 text-xs text-zinc-400">
+            <a href="#why-choose" className="hover:text-white transition-colors">About</a>
+            <a href="#gallery" className="hover:text-white transition-colors">Portfolio</a>
+            <a href="#consultation-form" className="hover:text-white transition-colors">Book Consultation</a>
+          </nav>
+
+          <div className="flex items-center gap-2.5">
+            <a href="tel:+919886276722" aria-label="Call +91 98862 76722" className={iconLink}><Phone size={16} /></a>
+            <a href="mailto:hello@hayatinteriors.com" aria-label="Email" className={iconLink}><Mail size={16} /></a>
+            <a href="https://instagram.com/hayatinteriors.co" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className={iconLink}><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" /></svg></a>
+            <a href="https://linkedin.com/company/hayat-interiors" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className={iconLink}><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11.5H3zM9.75 9.75h3.83v1.57h.05c.53-1 1.84-2.07 3.78-2.07 4.04 0 4.79 2.66 4.79 6.12v5.88h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75v5.29h-4z" /></svg></a>
           </div>
 
-          {/* Quick Links */}
-          <div className="flex flex-col items-center md:items-start space-y-4 text-xs font-sans text-zinc-500 font-light">
-            <h4 className="text-zinc-900 font-medium uppercase tracking-[0.2em] text-[10px] mb-4">Explore</h4>
-            <a href="https://www.hayatinteriors.com" className="hover:text-brand-green transition-colors">Home</a>
-            <a href="#gallery" className="hover:text-brand-green transition-colors">Portfolio</a>
-            <a href="#why-choose" className="hover:text-brand-green transition-colors">About</a>
-            <a href="#consultation-form" className="hover:text-brand-green transition-colors text-brand-green">Book Consultation</a>
+          <div className="hidden md:flex items-center gap-4 text-xs text-zinc-400">
+            <a href="tel:+919886276722" className="hover:text-white transition-colors">+91 98862 76722</a>
+            <a href="tel:+919535132943" className="hover:text-white transition-colors">+91 95351 32943</a>
           </div>
-
-          {/* Contact Details */}
-          <div className="flex flex-col items-center md:items-start space-y-4 text-xs font-sans text-zinc-500 font-light">
-            <h4 className="text-zinc-900 font-medium uppercase tracking-[0.2em] text-[10px] mb-4">Get in Touch</h4>
-            <p className="text-center md:text-left leading-relaxed">
-              Near Manyata Tech Park,<br />
-              Bengaluru 560045, India
-            </p>
-            <a href="tel:+919886276722" className="hover:text-brand-green transition-colors">+91 98862 76722</a>
-            <a href="tel:+919535132943" className="hover:text-brand-green transition-colors">+91 95351 32943</a>
-            <a href="mailto:hello@hayatinteriors.com" className="hover:text-brand-green transition-colors">hello@hayatinteriors.com</a>
-
-            <div className="flex gap-4 pt-4">
-              <a href="https://instagram.com/hayatinteriors.co" target="_blank" className="hover:text-brand-green transition-colors">Instagram</a>
-              <a href="https://linkedin.com/company/hayat-interiors" target="_blank" className="hover:text-brand-green transition-colors">LinkedIn</a>
-            </div>
-            <a
-              href="https://wa.me/919886276722"
-              className="mt-2 inline-flex items-center gap-2 border-b border-[#25D366]/20 pb-0.5 text-[#25D366] hover:border-[#25D366] transition-colors"
-            >
-              Message via WhatsApp
-            </a>
-          </div>
-
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[9px] text-zinc-400 font-sans uppercase tracking-[0.2em] font-light text-center md:text-left">
-          <p>© 2026 Hayat Interiors. All Rights Reserved.</p>
-          <p>Developed by <a href="https://webcros.in" target="_blank" className="hover:text-brand-green transition-colors">webcros</a></p>
+        <div className="mt-4 border-t border-white/10 pt-3 text-center text-[10px] leading-relaxed text-zinc-500 md:flex md:justify-between md:text-left">
+          <p>Near Manyata Tech Park, Bengaluru 560045</p>
+          <p>
+            © 2026 Hayat Interiors · Developed by{" "}
+            <a href="https://webcros.in" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">webcros</a>
+          </p>
         </div>
       </div>
     </footer>

@@ -83,7 +83,7 @@ export default function PhotoGallery() {
             viewport={{ once: true }}
             className="text-brand-green font-semibold tracking-wider uppercase text-sm"
           >
-            Visual Portfolio
+            Our Work
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -92,7 +92,7 @@ export default function PhotoGallery() {
             viewport={{ once: true }}
             className="mt-2 text-4xl md:text-5xl font-serif text-brand-black"
           >
-            Design Masterpieces
+            Crafted With Precision
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -101,7 +101,7 @@ export default function PhotoGallery() {
             viewport={{ once: true }}
             className="mt-4 text-zinc-600 max-w-2xl mx-auto"
           >
-            A curated selection of our most innovative and inspiring architectural projects.
+            A curated selection of our most inspiring home interior projects in Bangalore.
           </motion.p>
         </div>
 

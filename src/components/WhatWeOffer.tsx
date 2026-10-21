@@ -1,49 +1,74 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
+import {
+  CookingPot,
+  DoorClosed,
+  Utensils,
+  Tv,
+  Laptop,
+  Layers,
+  Lightbulb,
+  Paintbrush,
+  Bath,
+  Flower2,
+  DoorOpen,
+  BedDouble,
+  type LucideIcon,
+} from "lucide-react";
 
-const services = [
-  { name: "Modular Kitchens", icon: "🍳" },
-  { name: "Wardrobes & Storage", icon: "🗄️" },
-  { name: "Crockery Units", icon: "🍽️" },
-  { name: "Living & TV Units", icon: "📺" },
-  { name: "Study Areas", icon: "📚" },
-  { name: "False Ceilings", icon: "🏠" },
-  { name: "Lighting", icon: "💡" },
-  { name: "Wallpapers & Wall Finishes", icon: "🎨" },
-  { name: "Bathrooms", icon: "🚿" },
-  { name: "Pooja Units", icon: "🪔" },
-  { name: "Foyer & Entrance", icon: "🚪" },
-  { name: "Kids' Bedrooms", icon: "🛏️" },
+const services: { name: string; image: string; Icon: LucideIcon }[] = [
+  { name: "Modular Kitchens", image: "/what-we-offer/modular kitchen.jpg", Icon: CookingPot },
+  { name: "Wardrobes & Storage", image: "/what-we-offer/Wardrobes & Storage.jpg", Icon: DoorClosed },
+  { name: "Crockery Units", image: "/what-we-offer/Crockery Units.jpg", Icon: Utensils },
+  { name: "Living & TV Units", image: "/what-we-offer/Living & TV Units.jpg", Icon: Tv },
+  { name: "Study Areas", image: "/what-we-offer/Study Areas.jpg", Icon: Laptop },
+  { name: "False Ceilings", image: "/what-we-offer/False Ceilings.jpg", Icon: Layers },
+  { name: "Lighting", image: "/what-we-offer/Lighting.jpg", Icon: Lightbulb },
+  { name: "Wallpapers & Wall Finishes", image: "/what-we-offer/Wallpapers & Wall Finishes.jpg", Icon: Paintbrush },
+  { name: "Bathrooms", image: "/what-we-offer/Bathrooms.jpg", Icon: Bath },
+  { name: "Pooja Units", image: "/what-we-offer/Pooja Units.jpg", Icon: Flower2 },
+  { name: "Foyer & Entrance", image: "/what-we-offer/Foyer & Entrance.jpg", Icon: DoorOpen },
+  { name: "Kids' Bedrooms", image: "/what-we-offer/Kids' Bedrooms.jpg", Icon: BedDouble },
 ];
 
 export default function WhatWeOffer() {
   return (
-    <section className="py-16 md:py-24 bg-brand-offwhite">
+    <section className="py-12 md:py-20 bg-brand-offwhite">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center mb-12 md:mb-16">
-          <p className="text-[10px] text-brand-green uppercase tracking-[0.3em] font-medium mb-4">Hayat Interiors</p>
-          <h2 className="font-serif text-3xl sm:text-5xl font-light text-brand-black mb-4">What We Offer</h2>
-          <p className="font-sans text-zinc-500 font-light max-w-xl mx-auto">
+        <div className="text-center mb-8 md:mb-12">
+          <p className="text-[10px] text-brand-green uppercase tracking-[0.3em] pl-[0.3em] font-medium mb-3">Hayat Interiors</p>
+          <h2 className="font-serif text-3xl sm:text-5xl font-light text-brand-black mb-3">What We Offer</h2>
+          <p className="font-sans text-zinc-500 font-light max-w-xl mx-auto text-sm sm:text-base">
             End-to-end home interior solutions for modern homes in Bangalore.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-12">
-          {services.map((s, i) => (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-4 mb-8 md:mb-10">
+          {services.map(({ name, image, Icon }, i) => (
             <motion.a
-              key={i}
+              key={name}
               href="#consultation-form"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.05, duration: 0.5 }}
-              className="group bg-white rounded-xl p-6 md:p-8 text-center border border-zinc-100 hover:border-brand-green/30 hover:shadow-lg transition-all duration-300 cursor-pointer"
+              transition={{ delay: (i % 4) * 0.05, duration: 0.4 }}
+              className="group flex h-24 sm:h-28 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5 transition-shadow hover:shadow-md"
             >
-              <div className="text-2xl md:text-3xl mb-3">{s.icon}</div>
-              <h3 className="font-sans text-xs sm:text-sm font-medium text-brand-black group-hover:text-brand-green transition-colors">
-                {s.name}
-              </h3>
+              <div className="relative w-[42%] shrink-0">
+                <Image
+                  src={image}
+                  alt={name}
+                  fill
+                  sizes="(max-width: 1024px) 22vw, 12vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="flex flex-1 flex-col items-center justify-center gap-1.5 px-1.5 text-center">
+                <Icon className="h-5 w-5 text-brand-green" strokeWidth={1.5} />
+                <h3 className="font-sans text-[11px] sm:text-xs font-medium leading-tight text-brand-black">{name}</h3>
+              </div>
             </motion.a>
           ))}
         </div>
@@ -51,11 +76,13 @@ export default function WhatWeOffer() {
         <div className="text-center">
           <a
             href="#consultation-form"
-            className="inline-flex items-center gap-3 bg-brand-green text-white px-10 py-4 font-sans text-xs uppercase tracking-[0.15em] font-bold transition-all hover:bg-brand-black"
+            className="inline-flex items-center gap-2 bg-brand-green text-white px-8 py-3 font-sans text-xs uppercase tracking-[0.15em] font-bold rounded-lg hover:bg-brand-black transition-colors"
           >
-            Book Your Free Design Consultation →
+            Book Your Free Design Consultation
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </a>
-          <p className="text-zinc-400 text-xs mt-3">Includes a personalised mood board.</p>
         </div>
       </div>
     </section>
