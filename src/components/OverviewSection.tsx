@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function OverviewSection() {
   return (
-    <section className="py-12 md:py-20 bg-white">
+    <section className="py-10 md:py-14 bg-white">
       <div className="container mx-auto px-4 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

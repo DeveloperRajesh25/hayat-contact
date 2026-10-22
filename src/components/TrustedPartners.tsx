@@ -19,8 +19,8 @@ const partners = [
 
 export default function TrustedPartners() {
   return (
-    <section className="py-10 md:py-14 bg-zinc-50 border-y border-zinc-100 overflow-hidden">
-      <div className="text-center mb-8">
+    <section className="py-8 md:py-10 bg-zinc-50 border-y border-zinc-100 overflow-hidden" id="partners">
+      <div className="text-center mb-6">
         <p className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-medium">Our Trusted Partners</p>
       </div>
       <div className="relative">
@@ -32,8 +32,8 @@ export default function TrustedPartners() {
           transition={{ x: { repeat: Infinity, repeatType: "loop", duration: 30, ease: "linear" } }}
         >
           {[...partners, ...partners].map((p, i) => (
-            <div key={i} className="relative mx-5 md:mx-8 h-10 w-24 md:h-12 md:w-32 shrink-0 opacity-70">
-              <Image src={p.logo} alt={p.name} fill sizes="128px" className="object-contain" />
+            <div key={i} className="relative mx-3 md:mx-5 h-14 w-32 md:h-16 md:w-40 shrink-0 opacity-80 hover:opacity-100 transition-opacity">
+              <Image src={p.logo} alt={p.name} fill sizes="160px" className="object-contain" />
             </div>
           ))}
         </motion.div>

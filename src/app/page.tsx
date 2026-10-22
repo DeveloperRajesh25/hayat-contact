@@ -6,10 +6,8 @@ import OverviewSection from "@/components/OverviewSection";
 import VideoPortfolio from "@/components/VideoPortfolio";
 import WhyChooseSection from "@/components/WhyChooseSection";
 import WhatWeOffer from "@/components/WhatWeOffer";
-// import OurProcess from "@/components/OurProcess";
 import TrustedPartners from "@/components/TrustedPartners";
-import PhotoGallery from "@/components/PhotoGallery";
-import FAQ from "@/components/FAQ";
+// import FAQ from "@/components/FAQ";
 import KeywordsSection from "@/components/KeywordsSection";
 import Footer from "@/components/Footer";
 import StickyBottomMobile from "@/components/StickyBottomMobile";
@@ -25,10 +23,8 @@ export default function Home() {
       <VideoPortfolio />
       <WhyChooseSection />
       <WhatWeOffer />
-      {/* <OurProcess /> */}
-      <PhotoGallery />
       <TrustedPartners />
-      <FAQ />
+      {/* <FAQ /> */}
       <KeywordsSection />
       <Footer />
       <StickyBottomMobile />

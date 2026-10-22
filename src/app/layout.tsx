@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { DM_Serif_Display, DM_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const dmSerif = DM_Serif_Display({
+  weight: "400",
   subsets: ["latin"],
   variable: "--font-playfair",
 });
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-inter",
 });
@@ -29,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable} scroll-smooth`}>
+    <html lang="en" className={`${dmSerif.variable} ${dmSans.variable} scroll-smooth`}>
       <head>
         {/* Google Tag Manager */}
         <Script id="gtm-script" strategy="afterInteractive">

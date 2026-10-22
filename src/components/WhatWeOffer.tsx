@@ -35,17 +35,17 @@ const services: { name: string; image: string; Icon: LucideIcon }[] = [
 
 export default function WhatWeOffer() {
   return (
-    <section className="py-12 md:py-20 bg-brand-offwhite">
+    <section className="py-10 md:py-14 bg-brand-offwhite">
       <div className="container mx-auto px-4 max-w-7xl">
-        <div className="text-center mb-8 md:mb-12">
-          <p className="text-[10px] text-brand-green uppercase tracking-[0.3em] pl-[0.3em] font-medium mb-3">Hayat Interiors</p>
+        <div className="text-center mb-6 md:mb-8">
+          <p className="text-[10px] text-brand-green uppercase tracking-[0.2em] pl-[0.2em] font-medium mb-3">Hayat Interiors</p>
           <h2 className="font-serif text-3xl sm:text-5xl font-light text-brand-black mb-3">What We Offer</h2>
           <p className="font-sans text-zinc-500 font-light max-w-xl mx-auto text-sm sm:text-base">
             End-to-end home interior solutions for modern homes in Bangalore.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-4 mb-8 md:mb-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 md:gap-4 mb-6 md:mb-8">
           {services.map(({ name, image, Icon }, i) => (
             <motion.a
               key={name}

@@ -7,7 +7,7 @@
   --color-brand-green-accent: #059669;
   --color-brand-offwhite: #f5f0eb;
   
-  --font-serif: "Playfair Display", serif;
+  --font-serif: "DM Serif Display", serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -32,4 +32,16 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
