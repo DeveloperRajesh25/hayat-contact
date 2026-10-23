@@ -84,7 +84,7 @@ export default function BookingForm({ theme = "dark", source = "Landing Page For
         Book Your Free Consultation
       </h2>
       <p className={`mt-1.5 mb-6 font-sans text-sm ${isDark ? "text-white/50" : "text-zinc-500"}`}>
-        Share your details and our designer will call you within 2 working hours.
+        Share your details and our team will call you within 2 working hours.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-3.5">
