@@ -21,7 +21,7 @@ export default function TrustedPartners() {
   return (
     <section className="py-8 md:py-10 bg-zinc-50 border-y border-zinc-100 overflow-hidden" id="partners">
       <div className="text-center mb-6">
-        <p className="text-[10px] text-zinc-400 uppercase tracking-[0.3em] font-medium">Our Trusted Partners</p>
+        <p className="text-[10px] text-zinc-900 uppercase tracking-[0.3em] font-medium">Our Trusted Partners</p>
       </div>
       <div className="relative">
         <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 md:w-24 bg-gradient-to-r from-zinc-50 to-transparent" />

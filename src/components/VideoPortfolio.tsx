@@ -18,7 +18,7 @@ export default function VideoPortfolio() {
       <div className="container mx-auto px-4 max-w-7xl mb-8">
         <div className="text-center">
           <p className="text-sm sm:text-base text-brand-green uppercase tracking-[0.2em] pl-[0.2em] font-semibold mb-3">Portfolio</p>
-          <h2 className="font-serif text-3xl sm:text-5xl font-light text-brand-black mb-4">See Our Work In Action</h2>
+          <h2 className="font-serif text-3xl sm:text-5xl font-light text-brand-black mb-4">See How Thoughtful Design Comes to Life</h2>
         </div>
       </div>
 

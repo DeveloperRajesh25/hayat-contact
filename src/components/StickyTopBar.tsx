@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "About", href: "#overview" },
@@ -11,6 +13,8 @@ const navLinks = [
 ];
 
 export default function StickyTopBar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <nav className="absolute top-0 z-[100] w-full px-4 py-4 sm:px-6 sm:py-5">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
@@ -43,7 +47,32 @@ export default function StickyTopBar() {
         >
           Book Consultation
         </a>
+
+        <button
+          type="button"
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+          className="flex md:hidden items-center justify-center rounded-full bg-white/10 backdrop-blur-sm border border-white/20 p-2.5 text-white"
+        >
+          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </div>
+
+      {isMenuOpen && (
+        <div className="mx-auto mt-3 flex max-w-7xl flex-col gap-1 rounded-2xl border border-white/10 bg-black/80 backdrop-blur-xl p-4 md:hidden">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="rounded-lg px-3 py-3 text-sm font-medium text-white/80 hover:bg-white/10 hover:text-white transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
     </nav>
   );
 }

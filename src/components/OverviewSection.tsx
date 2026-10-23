@@ -16,7 +16,7 @@ export default function OverviewSection() {
         >
           <div className="relative w-full aspect-[4/3] md:aspect-auto rounded-2xl overflow-hidden">
             <Image
-              src="/gallery-images/1.JPG"
+              src="/about-us-image.png"
               alt="Hayat Interiors - About Us"
               fill
               sizes="(max-width: 768px) 100vw, 55vw"

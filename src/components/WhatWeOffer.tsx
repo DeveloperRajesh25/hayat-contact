@@ -19,18 +19,18 @@ import {
 } from "lucide-react";
 
 const services: { name: string; image: string; Icon: LucideIcon }[] = [
-  { name: "Modular Kitchens", image: "/what-we-offer/modular kitchen.jpg", Icon: CookingPot },
+  { name: "Modular Kitchens", image: "/what-we-offer/modular kitchen.jpeg", Icon: CookingPot },
   { name: "Wardrobes & Storage", image: "/what-we-offer/Wardrobes & Storage.jpg", Icon: DoorClosed },
   { name: "Crockery Units", image: "/what-we-offer/Crockery Units.jpg", Icon: Utensils },
-  { name: "Living & TV Units", image: "/what-we-offer/Living & TV Units.jpg", Icon: Tv },
+  { name: "Living & TV Units", image: "/what-we-offer/Living & TV Units.jpeg", Icon: Tv },
   { name: "Study Areas", image: "/what-we-offer/Study Areas.jpg", Icon: Laptop },
   { name: "False Ceilings", image: "/what-we-offer/False Ceilings.jpg", Icon: Layers },
-  { name: "Lighting", image: "/what-we-offer/Lighting.jpg", Icon: Lightbulb },
+  { name: "Lighting", image: "/what-we-offer/Lighting.jpeg", Icon: Lightbulb },
   { name: "Wallpapers & Wall Finishes", image: "/what-we-offer/Wallpapers & Wall Finishes.jpg", Icon: Paintbrush },
-  { name: "Bathrooms", image: "/what-we-offer/Bathrooms.jpg", Icon: Bath },
-  { name: "Pooja Units", image: "/what-we-offer/Pooja Units.jpg", Icon: Flower2 },
-  { name: "Foyer & Entrance", image: "/what-we-offer/Foyer & Entrance.jpg", Icon: DoorOpen },
-  { name: "Kids' Bedrooms", image: "/what-we-offer/Kids' Bedrooms.jpg", Icon: BedDouble },
+  { name: "Bathrooms", image: "/what-we-offer/Bathrooms.jpeg", Icon: Bath },
+  { name: "Puja Units", image: "/what-we-offer/Puja Units.jpg", Icon: Flower2 },
+  { name: "Foyer & Entrance", image: "/what-we-offer/Foyer & Entrance.jpeg", Icon: DoorOpen },
+  { name: "Kids' Bedrooms", image: "/what-we-offer/Kids' Bedrooms.jpeg", Icon: BedDouble },
 ];
 
 export default function WhatWeOffer() {
