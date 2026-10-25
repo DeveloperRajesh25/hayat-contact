@@ -4,7 +4,7 @@ import { Phone, MessageCircle, FileText } from "lucide-react";
 
 export default function SideContactBar() {
   return (
-    <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col gap-2">
+    <div className="fixed right-0 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2">
       <a
         href="https://wa.me/919886276722"
         target="_blank"

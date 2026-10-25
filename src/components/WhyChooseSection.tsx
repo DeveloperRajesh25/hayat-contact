@@ -82,8 +82,8 @@ export default function WhyChooseSection() {
               <div className="relative mx-auto mb-2.5 h-16 w-16 md:h-20 md:w-20">
                 <Image src={f.image} alt={f.title} fill sizes="80px" className="object-contain" />
               </div>
-              <h3 className="font-serif text-sm md:text-base font-normal text-brand-black mb-1.5">{f.title}</h3>
-              <p className="font-sans text-xs md:text-sm text-zinc-500 leading-relaxed font-light">{f.desc}</p>
+              <h3 className="font-serif text-base md:text-lg font-normal text-brand-black mb-1.5">{f.title}</h3>
+              <p className="font-sans text-sm md:text-base text-zinc-500 leading-relaxed font-light">{f.desc}</p>
             </motion.div>
           ))}
         </div>

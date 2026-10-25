@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const videos = [
   { id: "cslJ9ba7g_Q", title: "Home Interior Tour 1" },
@@ -13,6 +14,8 @@ const videos = [
 const duplicated = [...videos, ...videos, ...videos];
 
 export default function VideoPortfolio() {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+
   return (
     <section className="py-10 md:py-14 bg-zinc-50 overflow-hidden" id="portfolio">
       <div className="container mx-auto px-4 max-w-7xl mb-8">
@@ -43,11 +46,10 @@ export default function VideoPortfolio() {
               key={i}
               className="shrink-0 mr-6 w-[85vw] sm:w-[60vw] md:w-[45vw] lg:w-[32vw]"
             >
-              <a
-                href={`https://www.youtube.com/watch?v=${v.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative block aspect-video rounded-xl overflow-hidden shadow-lg bg-black group/vid"
+              <button
+                type="button"
+                onClick={() => setActiveVideo(v.id)}
+                className="relative block w-full aspect-video rounded-xl overflow-hidden shadow-lg bg-black group/vid"
               >
                 <img
                   src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`}
@@ -60,12 +62,44 @@ export default function VideoPortfolio() {
                     <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                   </div>
                 </div>
-              </a>
+              </button>
             </div>
           ))}
         </motion.div>
       </div>
 
+      <AnimatePresence>
+        {activeVideo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
+            onClick={() => setActiveVideo(null)}
+          >
+            <div
+              className="relative w-full max-w-3xl aspect-video"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setActiveVideo(null)}
+                aria-label="Close video"
+                className="absolute -top-10 right-0 text-white text-sm uppercase tracking-[0.2em] hover:opacity-70"
+              >
+                Close
+              </button>
+              <iframe
+                src={`https://www.youtube.com/embed/${activeVideo}?autoplay=1`}
+                title="Video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full rounded-xl"
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
