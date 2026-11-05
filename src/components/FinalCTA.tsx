@@ -52,6 +52,14 @@ export default function FinalCTA() {
 
                   setIsSubmitting(true);
 
+                  // CRM first; never throws, so the Sheet/WhatsApp flow is unaffected.
+                  await sendLeadToCRM({
+                    name,
+                    phone,
+                    message: "Interested in consultation (via WhatsApp CTA)",
+                    form_source: "Direct CTA (Bottom Form)",
+                  });
+
                   try {
                     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzT9RgKCeuKbvHIACe0XZMJ5Y5WGf60qVP12d6aTzjYjgqqt-twupFzTHWBmwmOgkOiNg/exec";
                     
@@ -72,13 +80,6 @@ export default function FinalCTA() {
                         "Content-Type": "text/plain;charset=utf-8",
                       },
                       body: JSON.stringify(payload),
-                    });
-
-                    void sendLeadToCRM({
-                      name,
-                      phone,
-                      message: "Interested in consultation (via WhatsApp CTA)",
-                      form_source: "Direct CTA (Bottom Form)",
                     });
                   } catch (error) {
                     console.error("Tracking error:", error);

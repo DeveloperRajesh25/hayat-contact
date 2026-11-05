@@ -52,6 +52,17 @@ export default function BookingForm({ theme = "dark", source = "Landing Page For
         timestamp: new Date().toLocaleString(),
       };
 
+      // Send to the CRM first so a Google Sheet failure can't skip it.
+      // sendLeadToCRM never throws; failures are only logged.
+      await sendLeadToCRM({
+        name: formData.name,
+        phone: formData.phone,
+        message: `Consultation Request (${source})`,
+        propertyType: formData.propertyType,
+        budget: formData.budget,
+        form_source: source,
+      });
+
       const response = await fetch(SCRIPT_URL, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
@@ -61,16 +72,6 @@ export default function BookingForm({ theme = "dark", source = "Landing Page For
       if (!response.ok) throw new Error("Submission failed");
       const result = await response.json().catch(() => null);
       if (result && result.status === "error") throw new Error(result.message || "Submission failed");
-
-      // Also push to the CRM (non-blocking; failures are logged, not shown)
-      void sendLeadToCRM({
-        name: formData.name,
-        phone: formData.phone,
-        message: `Consultation Request (${source})`,
-        propertyType: formData.propertyType,
-        budget: formData.budget,
-        form_source: source,
-      });
 
       onSuccess?.();
       router.push("/thank-you");
