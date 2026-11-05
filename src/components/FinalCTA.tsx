@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { sendLeadToCRM } from "@/lib/crm";
 
 export default function FinalCTA() {
   const [submitted, setSubmitted] = useState(false);
@@ -71,6 +72,13 @@ export default function FinalCTA() {
                         "Content-Type": "text/plain;charset=utf-8",
                       },
                       body: JSON.stringify(payload),
+                    });
+
+                    void sendLeadToCRM({
+                      name,
+                      phone,
+                      message: "Interested in consultation (via WhatsApp CTA)",
+                      form_source: "Direct CTA (Bottom Form)",
                     });
                   } catch (error) {
                     console.error("Tracking error:", error);
