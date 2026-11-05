@@ -2,7 +2,8 @@
 // Runs in the visitor's browser (where the Meta Pixel fires via GTM), so
 // source is WEBSITE_FORM — the CRM then skips its own Lead event to avoid a double count.
 
-const CRM_WEBHOOK_URL = process.env.NEXT_PUBLIC_CRM_WEBHOOK_URL;
+const CRM_WEBHOOK_URL =
+  "https://portal.logamdigital.com/api/leads/ingest/b28edf3e-1d2b-440d-aa2f-36337bcc52e9";
 
 function getCookie(name: string): string | null {
   if (typeof document === "undefined") return null;
@@ -19,11 +20,6 @@ export interface CrmLead {
 
 /** Never throws: a CRM failure must not block the visitor's submission. */
 export async function sendLeadToCRM(lead: CrmLead): Promise<boolean> {
-  if (!CRM_WEBHOOK_URL) {
-    console.warn("NEXT_PUBLIC_CRM_WEBHOOK_URL is not set; skipping CRM submission.");
-    return false;
-  }
-
   const params = new URLSearchParams(window.location.search);
   const digits = lead.phone.replace(/\D/g, "");
 
