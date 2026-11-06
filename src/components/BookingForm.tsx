@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { sendLeadToCRM } from "@/lib/crm";
+import { validatePhone } from "@/lib/phone";
 import { User, Phone, Home, Wallet, ChevronDown, ArrowRight, ShieldCheck, Gift } from "lucide-react";
 
 const propertyTypes = ["1 BHK", "2 BHK", "3 BHK", "4 BHK", "Villa"];
@@ -35,8 +36,9 @@ export default function BookingForm({ theme = "dark", source = "Landing Page For
       alert("Please fill all required fields.");
       return;
     }
-    if (formData.phone.length !== 10) {
-      alert("Please enter a valid 10-digit phone number.");
+    const phoneError = validatePhone(formData.phone);
+    if (phoneError) {
+      alert(phoneError);
       return;
     }
 
